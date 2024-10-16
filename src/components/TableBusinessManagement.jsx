@@ -6,6 +6,20 @@ import * as XLSX from "xlsx";
 import { Storage } from "aws-amplify";
 
 const TableBusinessManagement = ({ table, reset, loading }) => {
+  const createExcelBlob = (data) => {
+    const worksheet = XLSX.utils.json_to_sheet(data);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
+
+    const excelBuffer = XLSX.write(workbook, {
+      bookType: "xlsx",
+      type: "array",
+    });
+    const blob = new Blob([excelBuffer], { type: "application/octet-stream" });
+
+    return blob;
+  };
+
   const fetchListBusiness = async () => {
     for (let i = 0; i < table.length; i++) {
       /* cambiar coordenadas */
@@ -18,24 +32,10 @@ const TableBusinessManagement = ({ table, reset, loading }) => {
         coordinatesObject[key] = parseFloat(value);
       });
       table[i].location = JSON.stringify(coordinatesObject);
-
-      /* cambiar imagen */
-      // fetch(table[i].image)
-      //   .then((response) => response.blob())
-      //   .then((blob) => {
-      //     table[i].image = blob;
-      //   })
-      //   .catch((err) => console.error("Fetch error: ", err));
     }
     console.log(table);
 
-    const worksheet = XLSX.utils.json_to_sheet(table);
-    const workbook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
-
-    XLSX.writeFile(workbook, `lista_de_negocios.xlsx`);
-
-    const listBusiness = XLSX.writeFile(workbook, `lista_de_negocios.xlsx`);
+    const listBusiness = createExcelBlob(table);
 
     async function uploadXlsxFile(file) {
       try {

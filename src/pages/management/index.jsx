@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import styles from "../../styles/Management.module.css";
 import * as XLSX from "xlsx";
 import TableBusinessManagement from "@/components/TableBusinessManagement";
+import TableHistoryManagement from "@/components/TableHistoryManagement";
 
 const Management = () => {
   const [fileContent, setFileContent] = useState(null);
@@ -56,6 +57,12 @@ const Management = () => {
             loading={(e) => setLoading(e)}
           />
         )}
+
+        {/* {!fileContent && (
+          <TableHistoryManagement
+            table={listHistory}
+          />
+        )} */}
       </div>
     </div>
   );
