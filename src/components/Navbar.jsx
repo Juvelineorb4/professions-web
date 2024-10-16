@@ -5,7 +5,9 @@ import BarChartRoundedIcon from "@mui/icons-material/BarChartRounded";
 import FindInPageRoundedIcon from "@mui/icons-material/FindInPageRounded";
 import SettingsRoundedIcon from "@mui/icons-material/SettingsRounded";
 import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
-import NotificationsIcon from '@mui/icons-material/Notifications';
+import NotificationsIcon from "@mui/icons-material/Notifications";
+import CloudUploadIcon from "@mui/icons-material/CloudUpload";
+import ReportIcon from "@mui/icons-material/Report";
 import styled from "@/styles/Navbar.module.css";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -49,7 +51,7 @@ const Navbar = () => {
               <MenuItem
                 icon={<DashboardRoundedIcon />}
                 className={styled.menuItem}
-                onClick={() => router.push('/home')}
+                onClick={() => router.push("/home")}
               >
                 {" "}
                 Inicio{" "}
@@ -64,9 +66,23 @@ const Navbar = () => {
               <MenuItem
                 icon={<NotificationsIcon />}
                 className={styled.menuItem}
-                onClick={() => router.push('/notifications')}
+                onClick={() => router.push("/notifications")}
               >
                 Notificaciones
+              </MenuItem>
+              <MenuItem
+                icon={<CloudUploadIcon />}
+                className={styled.menuItem}
+                onClick={() => router.push("/management")}
+              >
+                Cargar registros
+              </MenuItem>
+              <MenuItem
+                icon={<ReportIcon />}
+                className={styled.menuItem}
+                onClick={() => router.push("/claim")}
+              >
+                Reclamaciones
               </MenuItem>
               <MenuItem
                 icon={<FindInPageRoundedIcon />}
