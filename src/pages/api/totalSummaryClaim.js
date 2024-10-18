@@ -2,11 +2,11 @@ export default async function handler(req, res) {
   if (req.method !== "GET") {
     return res.status(405).json({ message: "Método no permitido" });
   }
-  const { country } = req.query;
+  const { country, statusOwner } = req.query;
 
   try {
     const response = await fetch(
-      `https://z5i64n32d6.execute-api.us-east-1.amazonaws.com/prod/admin/business/summaryClaim?country=${country}`,
+      `https://3aa3yts4zj.execute-api.us-east-1.amazonaws.com/dev/admin/business/summaryStatus?country=${country}&statusOwner=${statusOwner}`,
       {
         method: "GET",
       }
