@@ -21,9 +21,10 @@ const Home = () => {
       headers: {},
       queryStringParameters: {
         country: selectCountry === "Todos" ? "" : selectCountry,
+        statusOwner: "NOT_ASSIGNED",
       },
     };
-    const urlNotClaim = `${pathNotClaim}?country=${paramsNotClaim.queryStringParameters.country}`;
+    const urlNotClaim = `${pathNotClaim}?country=${paramsNotClaim.queryStringParameters.country}&statusOwner=${paramsNotClaim.queryStringParameters.statusOwner}`;
     const responseNotClaim = await fetch(urlNotClaim, {
       method: "GET",
     });
@@ -35,13 +36,16 @@ const Home = () => {
       headers: {},
       queryStringParameters: {
         country: selectCountry === "Todos" ? "" : selectCountry,
+        statusOwner: "ASSIGNED",
       },
     };
-    const urlClaim = `${pathClaim}?country=${paramsClaim.queryStringParameters.country}`;
+    const urlClaim = `${pathClaim}?country=${paramsClaim.queryStringParameters.country}&statusOwner=${paramsClaim.queryStringParameters.statusOwner}`;
     const responseClaim = await fetch(urlClaim, {
       method: "GET",
     });
     const dataClaim = await responseClaim.json();
+    console.log("asignados", dataClaim);
+    console.log("no asignados", dataNotClaim);
     setNewDataNotClaim(dataNotClaim);
     setNewDataClaim(dataClaim);
     setLoading(false);
