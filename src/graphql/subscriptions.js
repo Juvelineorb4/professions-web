@@ -270,6 +270,22 @@ export const onCreateUsers = /* GraphQL */ `
       comments {
         nextToken
       }
+      promotions {
+        nextToken
+      }
+      notifications {
+        nextToken
+      }
+      lastLocation {
+        lat
+        lon
+      }
+      dates {
+        nextToken
+      }
+      claimRequests {
+        nextToken
+      }
       owner
       createdAt
       updatedAt
@@ -297,6 +313,22 @@ export const onUpdateUsers = /* GraphQL */ `
         nextToken
       }
       comments {
+        nextToken
+      }
+      promotions {
+        nextToken
+      }
+      notifications {
+        nextToken
+      }
+      lastLocation {
+        lat
+        lon
+      }
+      dates {
+        nextToken
+      }
+      claimRequests {
         nextToken
       }
       owner
@@ -328,6 +360,76 @@ export const onDeleteUsers = /* GraphQL */ `
       comments {
         nextToken
       }
+      promotions {
+        nextToken
+      }
+      notifications {
+        nextToken
+      }
+      lastLocation {
+        lat
+        lon
+      }
+      dates {
+        nextToken
+      }
+      claimRequests {
+        nextToken
+      }
+      owner
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onCreateUserNotification = /* GraphQL */ `
+  subscription OnCreateUserNotification(
+    $filter: ModelSubscriptionUserNotificationFilterInput
+    $owner: String
+  ) {
+    onCreateUserNotification(filter: $filter, owner: $owner) {
+      id
+      userID
+      title
+      message
+      type
+      data
+      owner
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateUserNotification = /* GraphQL */ `
+  subscription OnUpdateUserNotification(
+    $filter: ModelSubscriptionUserNotificationFilterInput
+    $owner: String
+  ) {
+    onUpdateUserNotification(filter: $filter, owner: $owner) {
+      id
+      userID
+      title
+      message
+      type
+      data
+      owner
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteUserNotification = /* GraphQL */ `
+  subscription OnDeleteUserNotification(
+    $filter: ModelSubscriptionUserNotificationFilterInput
+    $owner: String
+  ) {
+    onDeleteUserNotification(filter: $filter, owner: $owner) {
+      id
+      userID
+      title
+      message
+      type
+      data
       owner
       createdAt
       updatedAt
@@ -356,6 +458,7 @@ export const onCreateBusiness = /* GraphQL */ `
         updatedAt
       }
       status
+      statusOwner
       identityID
       name
       image
@@ -382,7 +485,16 @@ export const onCreateBusiness = /* GraphQL */ `
       comments {
         nextToken
       }
+      promotions {
+        nextToken
+      }
       catalogpdf
+      dates {
+        nextToken
+      }
+      claimRequests {
+        nextToken
+      }
       createdAt
       updatedAt
       owner
@@ -411,6 +523,7 @@ export const onUpdateBusiness = /* GraphQL */ `
         updatedAt
       }
       status
+      statusOwner
       identityID
       name
       image
@@ -437,7 +550,16 @@ export const onUpdateBusiness = /* GraphQL */ `
       comments {
         nextToken
       }
+      promotions {
+        nextToken
+      }
       catalogpdf
+      dates {
+        nextToken
+      }
+      claimRequests {
+        nextToken
+      }
       createdAt
       updatedAt
       owner
@@ -466,6 +588,7 @@ export const onDeleteBusiness = /* GraphQL */ `
         updatedAt
       }
       status
+      statusOwner
       identityID
       name
       image
@@ -492,7 +615,16 @@ export const onDeleteBusiness = /* GraphQL */ `
       comments {
         nextToken
       }
+      promotions {
+        nextToken
+      }
       catalogpdf
+      dates {
+        nextToken
+      }
+      claimRequests {
+        nextToken
+      }
       createdAt
       updatedAt
       owner
@@ -589,6 +721,243 @@ export const onDeleteBusinessComment = /* GraphQL */ `
     }
   }
 `;
+export const onCreateBusinessPromotion = /* GraphQL */ `
+  subscription OnCreateBusinessPromotion(
+    $filter: ModelSubscriptionBusinessPromotionFilterInput
+    $owner: String
+  ) {
+    onCreateBusinessPromotion(filter: $filter, owner: $owner) {
+      id
+      userID
+      user {
+        id
+        cognitoID
+        name
+        lastName
+        email
+        identityID
+        gender
+        notificationToken
+        owner
+        createdAt
+        updatedAt
+      }
+      businessID
+      business {
+        id
+        userID
+        status
+        statusOwner
+        identityID
+        name
+        image
+        images
+        thumbnail
+        email
+        phone
+        whatsapp
+        instagram
+        facebook
+        page
+        activity
+        tags
+        description
+        prefer
+        schedule
+        catalogpdf
+        createdAt
+        updatedAt
+        owner
+      }
+      title
+      dateInitial
+      dateFinal
+      status
+      isView
+      image
+      notifiedUserIDs
+      viewedUsers {
+        nextToken
+      }
+      owner
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateBusinessPromotion = /* GraphQL */ `
+  subscription OnUpdateBusinessPromotion(
+    $filter: ModelSubscriptionBusinessPromotionFilterInput
+    $owner: String
+  ) {
+    onUpdateBusinessPromotion(filter: $filter, owner: $owner) {
+      id
+      userID
+      user {
+        id
+        cognitoID
+        name
+        lastName
+        email
+        identityID
+        gender
+        notificationToken
+        owner
+        createdAt
+        updatedAt
+      }
+      businessID
+      business {
+        id
+        userID
+        status
+        statusOwner
+        identityID
+        name
+        image
+        images
+        thumbnail
+        email
+        phone
+        whatsapp
+        instagram
+        facebook
+        page
+        activity
+        tags
+        description
+        prefer
+        schedule
+        catalogpdf
+        createdAt
+        updatedAt
+        owner
+      }
+      title
+      dateInitial
+      dateFinal
+      status
+      isView
+      image
+      notifiedUserIDs
+      viewedUsers {
+        nextToken
+      }
+      owner
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteBusinessPromotion = /* GraphQL */ `
+  subscription OnDeleteBusinessPromotion(
+    $filter: ModelSubscriptionBusinessPromotionFilterInput
+    $owner: String
+  ) {
+    onDeleteBusinessPromotion(filter: $filter, owner: $owner) {
+      id
+      userID
+      user {
+        id
+        cognitoID
+        name
+        lastName
+        email
+        identityID
+        gender
+        notificationToken
+        owner
+        createdAt
+        updatedAt
+      }
+      businessID
+      business {
+        id
+        userID
+        status
+        statusOwner
+        identityID
+        name
+        image
+        images
+        thumbnail
+        email
+        phone
+        whatsapp
+        instagram
+        facebook
+        page
+        activity
+        tags
+        description
+        prefer
+        schedule
+        catalogpdf
+        createdAt
+        updatedAt
+        owner
+      }
+      title
+      dateInitial
+      dateFinal
+      status
+      isView
+      image
+      notifiedUserIDs
+      viewedUsers {
+        nextToken
+      }
+      owner
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onCreatePromotionViews = /* GraphQL */ `
+  subscription OnCreatePromotionViews(
+    $filter: ModelSubscriptionPromotionViewsFilterInput
+    $owner: String
+  ) {
+    onCreatePromotionViews(filter: $filter, owner: $owner) {
+      id
+      userID
+      promotionID
+      owner
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdatePromotionViews = /* GraphQL */ `
+  subscription OnUpdatePromotionViews(
+    $filter: ModelSubscriptionPromotionViewsFilterInput
+    $owner: String
+  ) {
+    onUpdatePromotionViews(filter: $filter, owner: $owner) {
+      id
+      userID
+      promotionID
+      owner
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeletePromotionViews = /* GraphQL */ `
+  subscription OnDeletePromotionViews(
+    $filter: ModelSubscriptionPromotionViewsFilterInput
+    $owner: String
+  ) {
+    onDeletePromotionViews(filter: $filter, owner: $owner) {
+      id
+      userID
+      promotionID
+      owner
+      createdAt
+      updatedAt
+    }
+  }
+`;
 export const onCreateFavorites = /* GraphQL */ `
   subscription OnCreateFavorites(
     $filter: ModelSubscriptionFavoritesFilterInput
@@ -601,6 +970,7 @@ export const onCreateFavorites = /* GraphQL */ `
         id
         userID
         status
+        statusOwner
         identityID
         name
         image
@@ -655,6 +1025,7 @@ export const onUpdateFavorites = /* GraphQL */ `
         id
         userID
         status
+        statusOwner
         identityID
         name
         image
@@ -709,6 +1080,7 @@ export const onDeleteFavorites = /* GraphQL */ `
         id
         userID
         status
+        statusOwner
         identityID
         name
         image
@@ -890,6 +1262,396 @@ export const onDeleteLogs = /* GraphQL */ `
       posI
       posE
       name
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onCreateDate = /* GraphQL */ `
+  subscription OnCreateDate(
+    $filter: ModelSubscriptionDateFilterInput
+    $owner: String
+  ) {
+    onCreateDate(filter: $filter, owner: $owner) {
+      id
+      userID
+      user {
+        id
+        cognitoID
+        name
+        lastName
+        email
+        identityID
+        gender
+        notificationToken
+        owner
+        createdAt
+        updatedAt
+      }
+      businessID
+      business {
+        id
+        userID
+        status
+        statusOwner
+        identityID
+        name
+        image
+        images
+        thumbnail
+        email
+        phone
+        whatsapp
+        instagram
+        facebook
+        page
+        activity
+        tags
+        description
+        prefer
+        schedule
+        catalogpdf
+        createdAt
+        updatedAt
+        owner
+      }
+      date
+      notificationMethod
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const onUpdateDate = /* GraphQL */ `
+  subscription OnUpdateDate(
+    $filter: ModelSubscriptionDateFilterInput
+    $owner: String
+  ) {
+    onUpdateDate(filter: $filter, owner: $owner) {
+      id
+      userID
+      user {
+        id
+        cognitoID
+        name
+        lastName
+        email
+        identityID
+        gender
+        notificationToken
+        owner
+        createdAt
+        updatedAt
+      }
+      businessID
+      business {
+        id
+        userID
+        status
+        statusOwner
+        identityID
+        name
+        image
+        images
+        thumbnail
+        email
+        phone
+        whatsapp
+        instagram
+        facebook
+        page
+        activity
+        tags
+        description
+        prefer
+        schedule
+        catalogpdf
+        createdAt
+        updatedAt
+        owner
+      }
+      date
+      notificationMethod
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const onDeleteDate = /* GraphQL */ `
+  subscription OnDeleteDate(
+    $filter: ModelSubscriptionDateFilterInput
+    $owner: String
+  ) {
+    onDeleteDate(filter: $filter, owner: $owner) {
+      id
+      userID
+      user {
+        id
+        cognitoID
+        name
+        lastName
+        email
+        identityID
+        gender
+        notificationToken
+        owner
+        createdAt
+        updatedAt
+      }
+      businessID
+      business {
+        id
+        userID
+        status
+        statusOwner
+        identityID
+        name
+        image
+        images
+        thumbnail
+        email
+        phone
+        whatsapp
+        instagram
+        facebook
+        page
+        activity
+        tags
+        description
+        prefer
+        schedule
+        catalogpdf
+        createdAt
+        updatedAt
+        owner
+      }
+      date
+      notificationMethod
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const onCreateClaimRequest = /* GraphQL */ `
+  subscription OnCreateClaimRequest(
+    $filter: ModelSubscriptionClaimRequestFilterInput
+    $owner: String
+  ) {
+    onCreateClaimRequest(filter: $filter, owner: $owner) {
+      id
+      businessID
+      business {
+        id
+        userID
+        status
+        statusOwner
+        identityID
+        name
+        image
+        images
+        thumbnail
+        email
+        phone
+        whatsapp
+        instagram
+        facebook
+        page
+        activity
+        tags
+        description
+        prefer
+        schedule
+        catalogpdf
+        createdAt
+        updatedAt
+        owner
+      }
+      userID
+      user {
+        id
+        cognitoID
+        name
+        lastName
+        email
+        identityID
+        gender
+        notificationToken
+        owner
+        createdAt
+        updatedAt
+      }
+      status
+      adminResponse
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const onUpdateClaimRequest = /* GraphQL */ `
+  subscription OnUpdateClaimRequest(
+    $filter: ModelSubscriptionClaimRequestFilterInput
+    $owner: String
+  ) {
+    onUpdateClaimRequest(filter: $filter, owner: $owner) {
+      id
+      businessID
+      business {
+        id
+        userID
+        status
+        statusOwner
+        identityID
+        name
+        image
+        images
+        thumbnail
+        email
+        phone
+        whatsapp
+        instagram
+        facebook
+        page
+        activity
+        tags
+        description
+        prefer
+        schedule
+        catalogpdf
+        createdAt
+        updatedAt
+        owner
+      }
+      userID
+      user {
+        id
+        cognitoID
+        name
+        lastName
+        email
+        identityID
+        gender
+        notificationToken
+        owner
+        createdAt
+        updatedAt
+      }
+      status
+      adminResponse
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const onDeleteClaimRequest = /* GraphQL */ `
+  subscription OnDeleteClaimRequest(
+    $filter: ModelSubscriptionClaimRequestFilterInput
+    $owner: String
+  ) {
+    onDeleteClaimRequest(filter: $filter, owner: $owner) {
+      id
+      businessID
+      business {
+        id
+        userID
+        status
+        statusOwner
+        identityID
+        name
+        image
+        images
+        thumbnail
+        email
+        phone
+        whatsapp
+        instagram
+        facebook
+        page
+        activity
+        tags
+        description
+        prefer
+        schedule
+        catalogpdf
+        createdAt
+        updatedAt
+        owner
+      }
+      userID
+      user {
+        id
+        cognitoID
+        name
+        lastName
+        email
+        identityID
+        gender
+        notificationToken
+        owner
+        createdAt
+        updatedAt
+      }
+      status
+      adminResponse
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const onCreateBusinessUploadHistory = /* GraphQL */ `
+  subscription OnCreateBusinessUploadHistory(
+    $filter: ModelSubscriptionBusinessUploadHistoryFilterInput
+  ) {
+    onCreateBusinessUploadHistory(filter: $filter) {
+      id
+      uploadDate
+      completionDate
+      validCount
+      total
+      invalidCount
+      originalPath
+      invalidPath
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateBusinessUploadHistory = /* GraphQL */ `
+  subscription OnUpdateBusinessUploadHistory(
+    $filter: ModelSubscriptionBusinessUploadHistoryFilterInput
+  ) {
+    onUpdateBusinessUploadHistory(filter: $filter) {
+      id
+      uploadDate
+      completionDate
+      validCount
+      total
+      invalidCount
+      originalPath
+      invalidPath
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteBusinessUploadHistory = /* GraphQL */ `
+  subscription OnDeleteBusinessUploadHistory(
+    $filter: ModelSubscriptionBusinessUploadHistoryFilterInput
+  ) {
+    onDeleteBusinessUploadHistory(filter: $filter) {
+      id
+      uploadDate
+      completionDate
+      validCount
+      total
+      invalidCount
+      originalPath
+      invalidPath
       createdAt
       updatedAt
     }

@@ -6,12 +6,16 @@ import CardSummary from "@/components/CardSummary";
 import styles from "../../styles/Claim.module.css";
 import MultipleSelect from "@/components/MultipleSelect";
 import CircularProgress from "@mui/material/CircularProgress";
+import TableBusinessClaim from "@/components/TableBusinessClaim";
+import { listClaimRequests } from "@/graphql/queries";
 
 const Home = () => {
   const [dataNotClaim, setNewDataNotClaim] = useState(null);
   const [dataClaim, setNewDataClaim] = useState(null);
   const [selectCountry, setSelectCountry] = useState("Todos");
+  const [table, setTable] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [loadingTable, setLoadingTable] = useState(false);
 
   const fetchTotalSummary = async () => {
     setLoading(true);
@@ -54,9 +58,22 @@ const Home = () => {
   const reset = () => {
     console.log("Cambio");
   };
+
+  const getBusinessClaimTable = async () => {
+    const response = await API.graphql({
+      query: listClaimRequests,
+      authMode: "AMAZON_COGNITO_USER_POOLS",
+    });
+    setTable(response.data.listClaimRequests.items);
+  };
+
   useEffect(() => {
     fetchTotalSummary();
   }, [selectCountry]);
+
+  useEffect(() => {
+    getBusinessClaimTable();
+  }, [loadingTable]);
 
   return (
     <div className={styles.claim}>
@@ -129,6 +146,18 @@ const Home = () => {
             </div>
           </div>
         )}
+
+        <div className={styles.contentTable}>
+          <p className={styles.titleAdmin}>
+            Gestion de solicitudes de reclamaciones de negocios
+          </p>
+          {table && (
+            <TableBusinessClaim
+              table={table}
+              loading={() => setLoadingTable(!loadingTable)}
+            />
+          )}
+        </div>
       </div>
     </div>
   );

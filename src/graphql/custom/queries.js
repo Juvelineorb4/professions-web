@@ -126,3 +126,31 @@ export const listNotificationHistories = /* GraphQL */ `
     }
   }
 `;
+
+export const listBusinessUploadHistories = /* GraphQL */ `
+  query ListBusinessUploadHistories(
+    $filter: ModelBusinessUploadHistoryFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listBusinessUploadHistories(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        uploadDate
+        completionDate
+        validCount
+        total
+        invalidCount
+        originalPath
+        invalidPath
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;

@@ -29,3 +29,5 @@ export { default as ReasonComplaintsCreateForm } from "./ReasonComplaintsCreateF
 export { default as ReasonComplaintsUpdateForm } from "./ReasonComplaintsUpdateForm";
 export { default as LogsCreateForm } from "./LogsCreateForm";
 export { default as LogsUpdateForm } from "./LogsUpdateForm";
+export { default as BusinessUploadHistoryCreateForm } from "./BusinessUploadHistoryCreateForm";
+export { default as BusinessUploadHistoryUpdateForm } from "./BusinessUploadHistoryUpdateForm";

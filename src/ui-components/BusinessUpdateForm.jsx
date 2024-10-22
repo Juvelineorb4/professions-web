@@ -196,6 +196,7 @@ export default function BusinessUpdateForm(props) {
   } = props;
   const initialValues = {
     status: "",
+    statusOwner: "",
     identityID: "",
     name: "",
     image: "",
@@ -215,6 +216,9 @@ export default function BusinessUpdateForm(props) {
     catalogpdf: "",
   };
   const [status, setStatus] = React.useState(initialValues.status);
+  const [statusOwner, setStatusOwner] = React.useState(
+    initialValues.statusOwner
+  );
   const [identityID, setIdentityID] = React.useState(initialValues.identityID);
   const [name, setName] = React.useState(initialValues.name);
   const [image, setImage] = React.useState(initialValues.image);
@@ -240,6 +244,7 @@ export default function BusinessUpdateForm(props) {
       ? { ...initialValues, ...businessRecord }
       : initialValues;
     setStatus(cleanValues.status);
+    setStatusOwner(cleanValues.statusOwner);
     setIdentityID(cleanValues.identityID);
     setName(cleanValues.name);
     setImage(cleanValues.image);
@@ -278,6 +283,7 @@ export default function BusinessUpdateForm(props) {
   const tagsRef = React.createRef();
   const validations = {
     status: [],
+    statusOwner: [],
     identityID: [],
     name: [],
     image: [],
@@ -323,6 +329,7 @@ export default function BusinessUpdateForm(props) {
         event.preventDefault();
         let modelFields = {
           status,
+          statusOwner,
           identityID,
           name,
           image,
@@ -396,6 +403,7 @@ export default function BusinessUpdateForm(props) {
           if (onChange) {
             const modelFields = {
               status: value,
+              statusOwner,
               identityID,
               name,
               image,
@@ -448,6 +456,64 @@ export default function BusinessUpdateForm(props) {
           {...getOverrideProps(overrides, "statusoption3")}
         ></option>
       </SelectField>
+      <SelectField
+        label="Status owner"
+        placeholder="Please select an option"
+        isDisabled={false}
+        value={statusOwner}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              status,
+              statusOwner: value,
+              identityID,
+              name,
+              image,
+              images,
+              thumbnail,
+              email,
+              phone,
+              whatsapp,
+              instagram,
+              facebook,
+              page,
+              activity,
+              tags,
+              description,
+              prefer,
+              schedule,
+              catalogpdf,
+            };
+            const result = onChange(modelFields);
+            value = result?.statusOwner ?? value;
+          }
+          if (errors.statusOwner?.hasError) {
+            runValidationTasks("statusOwner", value);
+          }
+          setStatusOwner(value);
+        }}
+        onBlur={() => runValidationTasks("statusOwner", statusOwner)}
+        errorMessage={errors.statusOwner?.errorMessage}
+        hasError={errors.statusOwner?.hasError}
+        {...getOverrideProps(overrides, "statusOwner")}
+      >
+        <option
+          children="Not assigned"
+          value="NOT_ASSIGNED"
+          {...getOverrideProps(overrides, "statusOwneroption0")}
+        ></option>
+        <option
+          children="Assigned"
+          value="ASSIGNED"
+          {...getOverrideProps(overrides, "statusOwneroption1")}
+        ></option>
+        <option
+          children="Owner"
+          value="OWNER"
+          {...getOverrideProps(overrides, "statusOwneroption2")}
+        ></option>
+      </SelectField>
       <TextField
         label="Identity id"
         isRequired={false}
@@ -458,6 +524,7 @@ export default function BusinessUpdateForm(props) {
           if (onChange) {
             const modelFields = {
               status,
+              statusOwner,
               identityID: value,
               name,
               image,
@@ -499,6 +566,7 @@ export default function BusinessUpdateForm(props) {
           if (onChange) {
             const modelFields = {
               status,
+              statusOwner,
               identityID,
               name: value,
               image,
@@ -540,6 +608,7 @@ export default function BusinessUpdateForm(props) {
           if (onChange) {
             const modelFields = {
               status,
+              statusOwner,
               identityID,
               name,
               image: value,
@@ -577,6 +646,7 @@ export default function BusinessUpdateForm(props) {
           if (onChange) {
             const modelFields = {
               status,
+              statusOwner,
               identityID,
               name,
               image,
@@ -640,6 +710,7 @@ export default function BusinessUpdateForm(props) {
           if (onChange) {
             const modelFields = {
               status,
+              statusOwner,
               identityID,
               name,
               image,
@@ -681,6 +752,7 @@ export default function BusinessUpdateForm(props) {
           if (onChange) {
             const modelFields = {
               status,
+              statusOwner,
               identityID,
               name,
               image,
@@ -722,6 +794,7 @@ export default function BusinessUpdateForm(props) {
           if (onChange) {
             const modelFields = {
               status,
+              statusOwner,
               identityID,
               name,
               image,
@@ -763,6 +836,7 @@ export default function BusinessUpdateForm(props) {
           if (onChange) {
             const modelFields = {
               status,
+              statusOwner,
               identityID,
               name,
               image,
@@ -804,6 +878,7 @@ export default function BusinessUpdateForm(props) {
           if (onChange) {
             const modelFields = {
               status,
+              statusOwner,
               identityID,
               name,
               image,
@@ -845,6 +920,7 @@ export default function BusinessUpdateForm(props) {
           if (onChange) {
             const modelFields = {
               status,
+              statusOwner,
               identityID,
               name,
               image,
@@ -886,6 +962,7 @@ export default function BusinessUpdateForm(props) {
           if (onChange) {
             const modelFields = {
               status,
+              statusOwner,
               identityID,
               name,
               image,
@@ -927,6 +1004,7 @@ export default function BusinessUpdateForm(props) {
           if (onChange) {
             const modelFields = {
               status,
+              statusOwner,
               identityID,
               name,
               image,
@@ -964,6 +1042,7 @@ export default function BusinessUpdateForm(props) {
           if (onChange) {
             const modelFields = {
               status,
+              statusOwner,
               identityID,
               name,
               image,
@@ -1027,6 +1106,7 @@ export default function BusinessUpdateForm(props) {
           if (onChange) {
             const modelFields = {
               status,
+              statusOwner,
               identityID,
               name,
               image,
@@ -1068,6 +1148,7 @@ export default function BusinessUpdateForm(props) {
           if (onChange) {
             const modelFields = {
               status,
+              statusOwner,
               identityID,
               name,
               image,
@@ -1109,6 +1190,7 @@ export default function BusinessUpdateForm(props) {
           if (onChange) {
             const modelFields = {
               status,
+              statusOwner,
               identityID,
               name,
               image,
@@ -1150,6 +1232,7 @@ export default function BusinessUpdateForm(props) {
           if (onChange) {
             const modelFields = {
               status,
+              statusOwner,
               identityID,
               name,
               image,

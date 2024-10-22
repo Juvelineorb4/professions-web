@@ -354,6 +354,22 @@ export const createUsers = /* GraphQL */ `
       comments {
         nextToken
       }
+      promotions {
+        nextToken
+      }
+      notifications {
+        nextToken
+      }
+      lastLocation {
+        lat
+        lon
+      }
+      dates {
+        nextToken
+      }
+      claimRequests {
+        nextToken
+      }
       owner
       createdAt
       updatedAt
@@ -381,6 +397,22 @@ export const updateUsers = /* GraphQL */ `
         nextToken
       }
       comments {
+        nextToken
+      }
+      promotions {
+        nextToken
+      }
+      notifications {
+        nextToken
+      }
+      lastLocation {
+        lat
+        lon
+      }
+      dates {
+        nextToken
+      }
+      claimRequests {
         nextToken
       }
       owner
@@ -412,6 +444,76 @@ export const deleteUsers = /* GraphQL */ `
       comments {
         nextToken
       }
+      promotions {
+        nextToken
+      }
+      notifications {
+        nextToken
+      }
+      lastLocation {
+        lat
+        lon
+      }
+      dates {
+        nextToken
+      }
+      claimRequests {
+        nextToken
+      }
+      owner
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const createUserNotification = /* GraphQL */ `
+  mutation CreateUserNotification(
+    $input: CreateUserNotificationInput!
+    $condition: ModelUserNotificationConditionInput
+  ) {
+    createUserNotification(input: $input, condition: $condition) {
+      id
+      userID
+      title
+      message
+      type
+      data
+      owner
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateUserNotification = /* GraphQL */ `
+  mutation UpdateUserNotification(
+    $input: UpdateUserNotificationInput!
+    $condition: ModelUserNotificationConditionInput
+  ) {
+    updateUserNotification(input: $input, condition: $condition) {
+      id
+      userID
+      title
+      message
+      type
+      data
+      owner
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteUserNotification = /* GraphQL */ `
+  mutation DeleteUserNotification(
+    $input: DeleteUserNotificationInput!
+    $condition: ModelUserNotificationConditionInput
+  ) {
+    deleteUserNotification(input: $input, condition: $condition) {
+      id
+      userID
+      title
+      message
+      type
+      data
       owner
       createdAt
       updatedAt
@@ -440,6 +542,7 @@ export const createBusiness = /* GraphQL */ `
         updatedAt
       }
       status
+      statusOwner
       identityID
       name
       image
@@ -466,7 +569,16 @@ export const createBusiness = /* GraphQL */ `
       comments {
         nextToken
       }
+      promotions {
+        nextToken
+      }
       catalogpdf
+      dates {
+        nextToken
+      }
+      claimRequests {
+        nextToken
+      }
       createdAt
       updatedAt
       owner
@@ -495,6 +607,7 @@ export const updateBusiness = /* GraphQL */ `
         updatedAt
       }
       status
+      statusOwner
       identityID
       name
       image
@@ -521,7 +634,16 @@ export const updateBusiness = /* GraphQL */ `
       comments {
         nextToken
       }
+      promotions {
+        nextToken
+      }
       catalogpdf
+      dates {
+        nextToken
+      }
+      claimRequests {
+        nextToken
+      }
       createdAt
       updatedAt
       owner
@@ -550,6 +672,7 @@ export const deleteBusiness = /* GraphQL */ `
         updatedAt
       }
       status
+      statusOwner
       identityID
       name
       image
@@ -576,7 +699,16 @@ export const deleteBusiness = /* GraphQL */ `
       comments {
         nextToken
       }
+      promotions {
+        nextToken
+      }
       catalogpdf
+      dates {
+        nextToken
+      }
+      claimRequests {
+        nextToken
+      }
       createdAt
       updatedAt
       owner
@@ -643,6 +775,243 @@ export const updateBusinessComment = /* GraphQL */ `
     }
   }
 `;
+export const createBusinessPromotion = /* GraphQL */ `
+  mutation CreateBusinessPromotion(
+    $input: CreateBusinessPromotionInput!
+    $condition: ModelBusinessPromotionConditionInput
+  ) {
+    createBusinessPromotion(input: $input, condition: $condition) {
+      id
+      userID
+      user {
+        id
+        cognitoID
+        name
+        lastName
+        email
+        identityID
+        gender
+        notificationToken
+        owner
+        createdAt
+        updatedAt
+      }
+      businessID
+      business {
+        id
+        userID
+        status
+        statusOwner
+        identityID
+        name
+        image
+        images
+        thumbnail
+        email
+        phone
+        whatsapp
+        instagram
+        facebook
+        page
+        activity
+        tags
+        description
+        prefer
+        schedule
+        catalogpdf
+        createdAt
+        updatedAt
+        owner
+      }
+      title
+      dateInitial
+      dateFinal
+      status
+      isView
+      image
+      notifiedUserIDs
+      viewedUsers {
+        nextToken
+      }
+      owner
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateBusinessPromotion = /* GraphQL */ `
+  mutation UpdateBusinessPromotion(
+    $input: UpdateBusinessPromotionInput!
+    $condition: ModelBusinessPromotionConditionInput
+  ) {
+    updateBusinessPromotion(input: $input, condition: $condition) {
+      id
+      userID
+      user {
+        id
+        cognitoID
+        name
+        lastName
+        email
+        identityID
+        gender
+        notificationToken
+        owner
+        createdAt
+        updatedAt
+      }
+      businessID
+      business {
+        id
+        userID
+        status
+        statusOwner
+        identityID
+        name
+        image
+        images
+        thumbnail
+        email
+        phone
+        whatsapp
+        instagram
+        facebook
+        page
+        activity
+        tags
+        description
+        prefer
+        schedule
+        catalogpdf
+        createdAt
+        updatedAt
+        owner
+      }
+      title
+      dateInitial
+      dateFinal
+      status
+      isView
+      image
+      notifiedUserIDs
+      viewedUsers {
+        nextToken
+      }
+      owner
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteBusinessPromotion = /* GraphQL */ `
+  mutation DeleteBusinessPromotion(
+    $input: DeleteBusinessPromotionInput!
+    $condition: ModelBusinessPromotionConditionInput
+  ) {
+    deleteBusinessPromotion(input: $input, condition: $condition) {
+      id
+      userID
+      user {
+        id
+        cognitoID
+        name
+        lastName
+        email
+        identityID
+        gender
+        notificationToken
+        owner
+        createdAt
+        updatedAt
+      }
+      businessID
+      business {
+        id
+        userID
+        status
+        statusOwner
+        identityID
+        name
+        image
+        images
+        thumbnail
+        email
+        phone
+        whatsapp
+        instagram
+        facebook
+        page
+        activity
+        tags
+        description
+        prefer
+        schedule
+        catalogpdf
+        createdAt
+        updatedAt
+        owner
+      }
+      title
+      dateInitial
+      dateFinal
+      status
+      isView
+      image
+      notifiedUserIDs
+      viewedUsers {
+        nextToken
+      }
+      owner
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const createPromotionViews = /* GraphQL */ `
+  mutation CreatePromotionViews(
+    $input: CreatePromotionViewsInput!
+    $condition: ModelPromotionViewsConditionInput
+  ) {
+    createPromotionViews(input: $input, condition: $condition) {
+      id
+      userID
+      promotionID
+      owner
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updatePromotionViews = /* GraphQL */ `
+  mutation UpdatePromotionViews(
+    $input: UpdatePromotionViewsInput!
+    $condition: ModelPromotionViewsConditionInput
+  ) {
+    updatePromotionViews(input: $input, condition: $condition) {
+      id
+      userID
+      promotionID
+      owner
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deletePromotionViews = /* GraphQL */ `
+  mutation DeletePromotionViews(
+    $input: DeletePromotionViewsInput!
+    $condition: ModelPromotionViewsConditionInput
+  ) {
+    deletePromotionViews(input: $input, condition: $condition) {
+      id
+      userID
+      promotionID
+      owner
+      createdAt
+      updatedAt
+    }
+  }
+`;
 export const createFavorites = /* GraphQL */ `
   mutation CreateFavorites(
     $input: CreateFavoritesInput!
@@ -655,6 +1024,7 @@ export const createFavorites = /* GraphQL */ `
         id
         userID
         status
+        statusOwner
         identityID
         name
         image
@@ -709,6 +1079,7 @@ export const updateFavorites = /* GraphQL */ `
         id
         userID
         status
+        statusOwner
         identityID
         name
         image
@@ -763,6 +1134,7 @@ export const deleteFavorites = /* GraphQL */ `
         id
         userID
         status
+        statusOwner
         identityID
         name
         image
@@ -935,6 +1307,399 @@ export const deleteLogs = /* GraphQL */ `
       posI
       posE
       name
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const createDate = /* GraphQL */ `
+  mutation CreateDate(
+    $input: CreateDateInput!
+    $condition: ModelDateConditionInput
+  ) {
+    createDate(input: $input, condition: $condition) {
+      id
+      userID
+      user {
+        id
+        cognitoID
+        name
+        lastName
+        email
+        identityID
+        gender
+        notificationToken
+        owner
+        createdAt
+        updatedAt
+      }
+      businessID
+      business {
+        id
+        userID
+        status
+        statusOwner
+        identityID
+        name
+        image
+        images
+        thumbnail
+        email
+        phone
+        whatsapp
+        instagram
+        facebook
+        page
+        activity
+        tags
+        description
+        prefer
+        schedule
+        catalogpdf
+        createdAt
+        updatedAt
+        owner
+      }
+      date
+      notificationMethod
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const updateDate = /* GraphQL */ `
+  mutation UpdateDate(
+    $input: UpdateDateInput!
+    $condition: ModelDateConditionInput
+  ) {
+    updateDate(input: $input, condition: $condition) {
+      id
+      userID
+      user {
+        id
+        cognitoID
+        name
+        lastName
+        email
+        identityID
+        gender
+        notificationToken
+        owner
+        createdAt
+        updatedAt
+      }
+      businessID
+      business {
+        id
+        userID
+        status
+        statusOwner
+        identityID
+        name
+        image
+        images
+        thumbnail
+        email
+        phone
+        whatsapp
+        instagram
+        facebook
+        page
+        activity
+        tags
+        description
+        prefer
+        schedule
+        catalogpdf
+        createdAt
+        updatedAt
+        owner
+      }
+      date
+      notificationMethod
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const deleteDate = /* GraphQL */ `
+  mutation DeleteDate(
+    $input: DeleteDateInput!
+    $condition: ModelDateConditionInput
+  ) {
+    deleteDate(input: $input, condition: $condition) {
+      id
+      userID
+      user {
+        id
+        cognitoID
+        name
+        lastName
+        email
+        identityID
+        gender
+        notificationToken
+        owner
+        createdAt
+        updatedAt
+      }
+      businessID
+      business {
+        id
+        userID
+        status
+        statusOwner
+        identityID
+        name
+        image
+        images
+        thumbnail
+        email
+        phone
+        whatsapp
+        instagram
+        facebook
+        page
+        activity
+        tags
+        description
+        prefer
+        schedule
+        catalogpdf
+        createdAt
+        updatedAt
+        owner
+      }
+      date
+      notificationMethod
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const createClaimRequest = /* GraphQL */ `
+  mutation CreateClaimRequest(
+    $input: CreateClaimRequestInput!
+    $condition: ModelClaimRequestConditionInput
+  ) {
+    createClaimRequest(input: $input, condition: $condition) {
+      id
+      businessID
+      business {
+        id
+        userID
+        status
+        statusOwner
+        identityID
+        name
+        image
+        images
+        thumbnail
+        email
+        phone
+        whatsapp
+        instagram
+        facebook
+        page
+        activity
+        tags
+        description
+        prefer
+        schedule
+        catalogpdf
+        createdAt
+        updatedAt
+        owner
+      }
+      userID
+      user {
+        id
+        cognitoID
+        name
+        lastName
+        email
+        identityID
+        gender
+        notificationToken
+        owner
+        createdAt
+        updatedAt
+      }
+      status
+      adminResponse
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const updateClaimRequest = /* GraphQL */ `
+  mutation UpdateClaimRequest(
+    $input: UpdateClaimRequestInput!
+    $condition: ModelClaimRequestConditionInput
+  ) {
+    updateClaimRequest(input: $input, condition: $condition) {
+      id
+      businessID
+      business {
+        id
+        userID
+        status
+        statusOwner
+        identityID
+        name
+        image
+        images
+        thumbnail
+        email
+        phone
+        whatsapp
+        instagram
+        facebook
+        page
+        activity
+        tags
+        description
+        prefer
+        schedule
+        catalogpdf
+        createdAt
+        updatedAt
+        owner
+      }
+      userID
+      user {
+        id
+        cognitoID
+        name
+        lastName
+        email
+        identityID
+        gender
+        notificationToken
+        owner
+        createdAt
+        updatedAt
+      }
+      status
+      adminResponse
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const deleteClaimRequest = /* GraphQL */ `
+  mutation DeleteClaimRequest(
+    $input: DeleteClaimRequestInput!
+    $condition: ModelClaimRequestConditionInput
+  ) {
+    deleteClaimRequest(input: $input, condition: $condition) {
+      id
+      businessID
+      business {
+        id
+        userID
+        status
+        statusOwner
+        identityID
+        name
+        image
+        images
+        thumbnail
+        email
+        phone
+        whatsapp
+        instagram
+        facebook
+        page
+        activity
+        tags
+        description
+        prefer
+        schedule
+        catalogpdf
+        createdAt
+        updatedAt
+        owner
+      }
+      userID
+      user {
+        id
+        cognitoID
+        name
+        lastName
+        email
+        identityID
+        gender
+        notificationToken
+        owner
+        createdAt
+        updatedAt
+      }
+      status
+      adminResponse
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const createBusinessUploadHistory = /* GraphQL */ `
+  mutation CreateBusinessUploadHistory(
+    $input: CreateBusinessUploadHistoryInput!
+    $condition: ModelBusinessUploadHistoryConditionInput
+  ) {
+    createBusinessUploadHistory(input: $input, condition: $condition) {
+      id
+      uploadDate
+      completionDate
+      validCount
+      total
+      invalidCount
+      originalPath
+      invalidPath
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateBusinessUploadHistory = /* GraphQL */ `
+  mutation UpdateBusinessUploadHistory(
+    $input: UpdateBusinessUploadHistoryInput!
+    $condition: ModelBusinessUploadHistoryConditionInput
+  ) {
+    updateBusinessUploadHistory(input: $input, condition: $condition) {
+      id
+      uploadDate
+      completionDate
+      validCount
+      total
+      invalidCount
+      originalPath
+      invalidPath
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteBusinessUploadHistory = /* GraphQL */ `
+  mutation DeleteBusinessUploadHistory(
+    $input: DeleteBusinessUploadHistoryInput!
+    $condition: ModelBusinessUploadHistoryConditionInput
+  ) {
+    deleteBusinessUploadHistory(input: $input, condition: $condition) {
+      id
+      uploadDate
+      completionDate
+      validCount
+      total
+      invalidCount
+      originalPath
+      invalidPath
       createdAt
       updatedAt
     }
