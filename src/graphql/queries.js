@@ -9,6 +9,7 @@ export const getDeviceNotificationToken = /* GraphQL */ `
       notificationToken
       createdAt
       updatedAt
+      __typename
     }
   }
 `;
@@ -29,8 +30,10 @@ export const listDeviceNotificationTokens = /* GraphQL */ `
         notificationToken
         createdAt
         updatedAt
+        __typename
       }
       nextToken
+      __typename
     }
   }
 `;
@@ -42,6 +45,7 @@ export const getAppVersionHistory = /* GraphQL */ `
       latestVersion
       createdAt
       updatedAt
+      __typename
     }
   }
 `;
@@ -62,8 +66,10 @@ export const listAppVersionHistories = /* GraphQL */ `
         latestVersion
         createdAt
         updatedAt
+        __typename
       }
       nextToken
+      __typename
     }
   }
 `;
@@ -77,6 +83,7 @@ export const getReports = /* GraphQL */ `
       status
       createdAt
       updatedAt
+      __typename
     }
   }
 `;
@@ -95,12 +102,14 @@ export const listReports = /* GraphQL */ `
         status
         createdAt
         updatedAt
+        __typename
       }
       nextToken
+      __typename
     }
   }
 `;
-export const appVersionByDate = /* GraphQL */ `
+export const AppVersionByDate = /* GraphQL */ `
   query AppVersionByDate(
     $platform: AppPlatform!
     $createdAt: ModelStringKeyConditionInput
@@ -123,8 +132,10 @@ export const appVersionByDate = /* GraphQL */ `
         latestVersion
         createdAt
         updatedAt
+        __typename
       }
       nextToken
+      __typename
     }
   }
 `;
@@ -136,6 +147,7 @@ export const getNotificationHistory = /* GraphQL */ `
       message
       createdAt
       updatedAt
+      __typename
     }
   }
 `;
@@ -156,8 +168,10 @@ export const listNotificationHistories = /* GraphQL */ `
         message
         createdAt
         updatedAt
+        __typename
       }
       nextToken
+      __typename
     }
   }
 `;
@@ -168,9 +182,11 @@ export const getArea = /* GraphQL */ `
       name
       activities {
         nextToken
+        __typename
       }
       createdAt
       updatedAt
+      __typename
     }
   }
 `;
@@ -186,8 +202,10 @@ export const listAreas = /* GraphQL */ `
         name
         createdAt
         updatedAt
+        __typename
       }
       nextToken
+      __typename
     }
   }
 `;
@@ -202,9 +220,11 @@ export const getActivity = /* GraphQL */ `
         name
         createdAt
         updatedAt
+        __typename
       }
       createdAt
       updatedAt
+      __typename
     }
   }
 `;
@@ -221,8 +241,10 @@ export const listActivities = /* GraphQL */ `
         areaID
         createdAt
         updatedAt
+        __typename
       }
       nextToken
+      __typename
     }
   }
 `;
@@ -247,8 +269,10 @@ export const activitiesByAreaID = /* GraphQL */ `
         areaID
         createdAt
         updatedAt
+        __typename
       }
       nextToken
+      __typename
     }
   }
 `;
@@ -265,16 +289,41 @@ export const getUsers = /* GraphQL */ `
       notificationToken
       favorites {
         nextToken
+        __typename
       }
       business {
         nextToken
+        __typename
       }
       comments {
         nextToken
+        __typename
+      }
+      promotions {
+        nextToken
+        __typename
+      }
+      notifications {
+        nextToken
+        __typename
+      }
+      lastLocation {
+        lat
+        lon
+        __typename
+      }
+      dates {
+        nextToken
+        __typename
+      }
+      claimRequests {
+        nextToken
+        __typename
       }
       owner
       createdAt
       updatedAt
+      __typename
     }
   }
 `;
@@ -297,8 +346,10 @@ export const listUsers = /* GraphQL */ `
         owner
         createdAt
         updatedAt
+        __typename
       }
       nextToken
+      __typename
     }
   }
 `;
@@ -329,8 +380,86 @@ export const userByEmail = /* GraphQL */ `
         owner
         createdAt
         updatedAt
+        __typename
       }
       nextToken
+      __typename
+    }
+  }
+`;
+export const getUserNotification = /* GraphQL */ `
+  query GetUserNotification($id: ID!) {
+    getUserNotification(id: $id) {
+      id
+      userID
+      title
+      message
+      type
+      data
+      owner
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const listUserNotifications = /* GraphQL */ `
+  query ListUserNotifications(
+    $filter: ModelUserNotificationFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listUserNotifications(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        userID
+        title
+        message
+        type
+        data
+        owner
+        createdAt
+        updatedAt
+        __typename
+      }
+      nextToken
+      __typename
+    }
+  }
+`;
+export const userNotificationsByUserID = /* GraphQL */ `
+  query UserNotificationsByUserID(
+    $userID: ID!
+    $sortDirection: ModelSortDirection
+    $filter: ModelUserNotificationFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    userNotificationsByUserID(
+      userID: $userID
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        userID
+        title
+        message
+        type
+        data
+        owner
+        createdAt
+        updatedAt
+        __typename
+      }
+      nextToken
+      __typename
     }
   }
 `;
@@ -351,8 +480,10 @@ export const getBusiness = /* GraphQL */ `
         owner
         createdAt
         updatedAt
+        __typename
       }
       status
+      statusOwner
       identityID
       name
       image
@@ -367,22 +498,38 @@ export const getBusiness = /* GraphQL */ `
       coordinates {
         lat
         lon
+        __typename
       }
       activity
       tags
       favorites {
         nextToken
+        __typename
       }
       description
       prefer
       schedule
       comments {
         nextToken
+        __typename
+      }
+      promotions {
+        nextToken
+        __typename
       }
       catalogpdf
+      dates {
+        nextToken
+        __typename
+      }
+      claimRequests {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       owner
+      __typename
     }
   }
 `;
@@ -397,6 +544,7 @@ export const listBusinesses = /* GraphQL */ `
         id
         userID
         status
+        statusOwner
         identityID
         name
         image
@@ -417,8 +565,10 @@ export const listBusinesses = /* GraphQL */ `
         createdAt
         updatedAt
         owner
+        __typename
       }
       nextToken
+      __typename
     }
   }
 `;
@@ -441,6 +591,7 @@ export const listBusinessbyUserID = /* GraphQL */ `
         id
         userID
         status
+        statusOwner
         identityID
         name
         image
@@ -461,8 +612,10 @@ export const listBusinessbyUserID = /* GraphQL */ `
         createdAt
         updatedAt
         owner
+        __typename
       }
       nextToken
+      __typename
     }
   }
 `;
@@ -483,6 +636,7 @@ export const getBusinessComment = /* GraphQL */ `
         owner
         createdAt
         updatedAt
+        __typename
       }
       businessID
       stars
@@ -490,6 +644,7 @@ export const getBusinessComment = /* GraphQL */ `
       createdAt
       updatedAt
       owner
+      __typename
     }
   }
 `;
@@ -513,8 +668,10 @@ export const listBusinessComments = /* GraphQL */ `
         createdAt
         updatedAt
         owner
+        __typename
       }
       nextToken
+      __typename
     }
   }
 `;
@@ -542,8 +699,10 @@ export const businessCommentsByUserID = /* GraphQL */ `
         createdAt
         updatedAt
         owner
+        __typename
       }
       nextToken
+      __typename
     }
   }
 `;
@@ -571,20 +730,38 @@ export const businessCommentsByBusinessID = /* GraphQL */ `
         createdAt
         updatedAt
         owner
+        __typename
       }
       nextToken
+      __typename
     }
   }
 `;
-export const getFavorites = /* GraphQL */ `
-  query GetFavorites($id: ID!) {
-    getFavorites(id: $id) {
+export const getBusinessPromotion = /* GraphQL */ `
+  query GetBusinessPromotion($id: ID!) {
+    getBusinessPromotion(id: $id) {
       id
+      userID
+      user {
+        id
+        cognitoID
+        name
+        lastName
+        email
+        identityID
+        gender
+        notificationToken
+        owner
+        createdAt
+        updatedAt
+        __typename
+      }
       businessID
       business {
         id
         userID
         status
+        statusOwner
         identityID
         name
         image
@@ -605,6 +782,224 @@ export const getFavorites = /* GraphQL */ `
         createdAt
         updatedAt
         owner
+        __typename
+      }
+      title
+      dateInitial
+      dateFinal
+      status
+      isView
+      image
+      notifiedUserIDs
+      viewedUsers {
+        nextToken
+        __typename
+      }
+      owner
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const listBusinessPromotions = /* GraphQL */ `
+  query ListBusinessPromotions(
+    $filter: ModelBusinessPromotionFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listBusinessPromotions(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        userID
+        businessID
+        title
+        dateInitial
+        dateFinal
+        status
+        isView
+        image
+        notifiedUserIDs
+        owner
+        createdAt
+        updatedAt
+        __typename
+      }
+      nextToken
+      __typename
+    }
+  }
+`;
+export const businessPromotionsByUserID = /* GraphQL */ `
+  query BusinessPromotionsByUserID(
+    $userID: ID!
+    $sortDirection: ModelSortDirection
+    $filter: ModelBusinessPromotionFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    businessPromotionsByUserID(
+      userID: $userID
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        userID
+        businessID
+        title
+        dateInitial
+        dateFinal
+        status
+        isView
+        image
+        notifiedUserIDs
+        owner
+        createdAt
+        updatedAt
+        __typename
+      }
+      nextToken
+      __typename
+    }
+  }
+`;
+export const businessPromotionsByBusinessID = /* GraphQL */ `
+  query BusinessPromotionsByBusinessID(
+    $businessID: ID!
+    $sortDirection: ModelSortDirection
+    $filter: ModelBusinessPromotionFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    businessPromotionsByBusinessID(
+      businessID: $businessID
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        userID
+        businessID
+        title
+        dateInitial
+        dateFinal
+        status
+        isView
+        image
+        notifiedUserIDs
+        owner
+        createdAt
+        updatedAt
+        __typename
+      }
+      nextToken
+      __typename
+    }
+  }
+`;
+export const getPromotionViews = /* GraphQL */ `
+  query GetPromotionViews($id: ID!) {
+    getPromotionViews(id: $id) {
+      id
+      userID
+      promotionID
+      owner
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const listPromotionViews = /* GraphQL */ `
+  query ListPromotionViews(
+    $filter: ModelPromotionViewsFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listPromotionViews(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        userID
+        promotionID
+        owner
+        createdAt
+        updatedAt
+        __typename
+      }
+      nextToken
+      __typename
+    }
+  }
+`;
+export const promotionViewsByPromotionID = /* GraphQL */ `
+  query PromotionViewsByPromotionID(
+    $promotionID: ID!
+    $sortDirection: ModelSortDirection
+    $filter: ModelPromotionViewsFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    promotionViewsByPromotionID(
+      promotionID: $promotionID
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        userID
+        promotionID
+        owner
+        createdAt
+        updatedAt
+        __typename
+      }
+      nextToken
+      __typename
+    }
+  }
+`;
+export const getFavorites = /* GraphQL */ `
+  query GetFavorites($id: ID!) {
+    getFavorites(id: $id) {
+      id
+      businessID
+      business {
+        id
+        userID
+        status
+        statusOwner
+        identityID
+        name
+        image
+        images
+        thumbnail
+        email
+        phone
+        whatsapp
+        instagram
+        facebook
+        page
+        activity
+        tags
+        description
+        prefer
+        schedule
+        catalogpdf
+        createdAt
+        updatedAt
+        owner
+        __typename
       }
       userID
       user {
@@ -619,11 +1014,13 @@ export const getFavorites = /* GraphQL */ `
         owner
         createdAt
         updatedAt
+        __typename
       }
       position
       owner
       createdAt
       updatedAt
+      __typename
     }
   }
 `;
@@ -642,8 +1039,10 @@ export const listFavorites = /* GraphQL */ `
         owner
         createdAt
         updatedAt
+        __typename
       }
       nextToken
+      __typename
     }
   }
 `;
@@ -672,8 +1071,10 @@ export const favoritesByBusinessID = /* GraphQL */ `
         owner
         createdAt
         updatedAt
+        __typename
       }
       nextToken
+      __typename
     }
   }
 `;
@@ -700,8 +1101,10 @@ export const listFavoritesbyUserID = /* GraphQL */ `
         owner
         createdAt
         updatedAt
+        __typename
       }
       nextToken
+      __typename
     }
   }
 `;
@@ -717,6 +1120,7 @@ export const getComplaints = /* GraphQL */ `
       owner
       createdAt
       updatedAt
+      __typename
     }
   }
 `;
@@ -737,8 +1141,10 @@ export const listComplaints = /* GraphQL */ `
         owner
         createdAt
         updatedAt
+        __typename
       }
       nextToken
+      __typename
     }
   }
 `;
@@ -750,6 +1156,7 @@ export const getReasonComplaints = /* GraphQL */ `
       createdAt
       updatedAt
       owner
+      __typename
     }
   }
 `;
@@ -770,8 +1177,10 @@ export const listReasonComplaints = /* GraphQL */ `
         createdAt
         updatedAt
         owner
+        __typename
       }
       nextToken
+      __typename
     }
   }
 `;
@@ -788,6 +1197,7 @@ export const getLogs = /* GraphQL */ `
       name
       createdAt
       updatedAt
+      __typename
     }
   }
 `;
@@ -809,8 +1219,338 @@ export const listLogs = /* GraphQL */ `
         name
         createdAt
         updatedAt
+        __typename
       }
       nextToken
+      __typename
+    }
+  }
+`;
+export const getDate = /* GraphQL */ `
+  query GetDate($id: ID!) {
+    getDate(id: $id) {
+      id
+      userID
+      user {
+        id
+        cognitoID
+        name
+        lastName
+        email
+        identityID
+        gender
+        notificationToken
+        owner
+        createdAt
+        updatedAt
+        __typename
+      }
+      businessID
+      business {
+        id
+        userID
+        status
+        statusOwner
+        identityID
+        name
+        image
+        images
+        thumbnail
+        email
+        phone
+        whatsapp
+        instagram
+        facebook
+        page
+        activity
+        tags
+        description
+        prefer
+        schedule
+        catalogpdf
+        createdAt
+        updatedAt
+        owner
+        __typename
+      }
+      date
+      notificationMethod
+      createdAt
+      updatedAt
+      owner
+      __typename
+    }
+  }
+`;
+export const listDates = /* GraphQL */ `
+  query ListDates(
+    $filter: ModelDateFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listDates(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        userID
+        businessID
+        date
+        notificationMethod
+        createdAt
+        updatedAt
+        owner
+        __typename
+      }
+      nextToken
+      __typename
+    }
+  }
+`;
+export const listDatesByUser = /* GraphQL */ `
+  query ListDatesByUser(
+    $userID: ID!
+    $sortDirection: ModelSortDirection
+    $filter: ModelDateFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listDatesByUser(
+      userID: $userID
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        userID
+        businessID
+        date
+        notificationMethod
+        createdAt
+        updatedAt
+        owner
+        __typename
+      }
+      nextToken
+      __typename
+    }
+  }
+`;
+export const listDatesByBusiness = /* GraphQL */ `
+  query ListDatesByBusiness(
+    $businessID: ID!
+    $sortDirection: ModelSortDirection
+    $filter: ModelDateFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listDatesByBusiness(
+      businessID: $businessID
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        userID
+        businessID
+        date
+        notificationMethod
+        createdAt
+        updatedAt
+        owner
+        __typename
+      }
+      nextToken
+      __typename
+    }
+  }
+`;
+export const getClaimRequest = /* GraphQL */ `
+  query GetClaimRequest($id: ID!) {
+    getClaimRequest(id: $id) {
+      id
+      businessID
+      business {
+        id
+        userID
+        status
+        statusOwner
+        identityID
+        name
+        image
+        images
+        thumbnail
+        email
+        phone
+        whatsapp
+        instagram
+        facebook
+        page
+        activity
+        tags
+        description
+        prefer
+        schedule
+        catalogpdf
+        createdAt
+        updatedAt
+        owner
+        __typename
+      }
+      userID
+      user {
+        id
+        cognitoID
+        name
+        lastName
+        email
+        identityID
+        gender
+        notificationToken
+        owner
+        createdAt
+        updatedAt
+        __typename
+      }
+      status
+      adminResponse
+      createdAt
+      updatedAt
+      owner
+      __typename
+    }
+  }
+`;
+export const listClaimRequests = /* GraphQL */ `
+  query ListClaimRequests(
+    $filter: ModelClaimRequestFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listClaimRequests(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        businessID
+        userID
+        status
+        adminResponse
+        createdAt
+        updatedAt
+        owner
+        __typename
+      }
+      nextToken
+      __typename
+    }
+  }
+`;
+export const listClaimsByBusiness = /* GraphQL */ `
+  query ListClaimsByBusiness(
+    $businessID: ID!
+    $sortDirection: ModelSortDirection
+    $filter: ModelClaimRequestFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listClaimsByBusiness(
+      businessID: $businessID
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        businessID
+        userID
+        status
+        adminResponse
+        createdAt
+        updatedAt
+        owner
+        __typename
+      }
+      nextToken
+      __typename
+    }
+  }
+`;
+export const listClaimsByUser = /* GraphQL */ `
+  query ListClaimsByUser(
+    $userID: ID!
+    $sortDirection: ModelSortDirection
+    $filter: ModelClaimRequestFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listClaimsByUser(
+      userID: $userID
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        businessID
+        userID
+        status
+        adminResponse
+        createdAt
+        updatedAt
+        owner
+        __typename
+      }
+      nextToken
+      __typename
+    }
+  }
+`;
+export const getBusinessUploadHistory = /* GraphQL */ `
+  query GetBusinessUploadHistory($id: ID!) {
+    getBusinessUploadHistory(id: $id) {
+      id
+      uploadDate
+      completionDate
+      validCount
+      total
+      invalidCount
+      originalPath
+      invalidPath
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const listBusinessUploadHistories = /* GraphQL */ `
+  query ListBusinessUploadHistories(
+    $filter: ModelBusinessUploadHistoryFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listBusinessUploadHistories(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        uploadDate
+        completionDate
+        validCount
+        total
+        invalidCount
+        originalPath
+        invalidPath
+        createdAt
+        updatedAt
+        __typename
+      }
+      nextToken
+      __typename
     }
   }
 `;

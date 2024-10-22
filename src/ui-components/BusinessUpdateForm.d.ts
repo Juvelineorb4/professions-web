@@ -23,6 +23,7 @@ export declare type ValidationResponse = {
 export declare type ValidationFunction<T> = (value: T, validationResponse: ValidationResponse) => ValidationResponse | Promise<ValidationResponse>;
 export declare type BusinessUpdateFormInputValues = {
     status?: string;
+    statusOwner?: string;
     identityID?: string;
     name?: string;
     image?: string;
@@ -43,6 +44,7 @@ export declare type BusinessUpdateFormInputValues = {
 };
 export declare type BusinessUpdateFormValidationValues = {
     status?: ValidationFunction<string>;
+    statusOwner?: ValidationFunction<string>;
     identityID?: ValidationFunction<string>;
     name?: ValidationFunction<string>;
     image?: ValidationFunction<string>;
@@ -65,6 +67,7 @@ export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes
 export declare type BusinessUpdateFormOverridesProps = {
     BusinessUpdateFormGrid?: PrimitiveOverrideProps<GridProps>;
     status?: PrimitiveOverrideProps<SelectFieldProps>;
+    statusOwner?: PrimitiveOverrideProps<SelectFieldProps>;
     identityID?: PrimitiveOverrideProps<TextFieldProps>;
     name?: PrimitiveOverrideProps<TextFieldProps>;
     image?: PrimitiveOverrideProps<TextFieldProps>;

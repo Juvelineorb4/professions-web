@@ -3,47 +3,47 @@ import { API, withSSRContext } from "aws-amplify";
 import Navbar from "../../components/Navbar";
 import CardTotal from "@/components/CardTotal";
 import CardSummary from "@/components/CardSummary";
-import styles from "../../styles/Home.module.css";
+import styles from "../../styles/Claim.module.css";
 import MultipleSelect from "@/components/MultipleSelect";
 import CircularProgress from "@mui/material/CircularProgress";
 
 const Home = () => {
-  const [dataUsers, setDataUsers] = useState(null);
-  const [dataBusiness, setDataBusiness] = useState(null);
+  const [dataNotClaim, setNewDataNotClaim] = useState(null);
+  const [dataClaim, setNewDataClaim] = useState(null);
   const [selectCountry, setSelectCountry] = useState("Todos");
   const [loading, setLoading] = useState(false);
 
   const fetchTotalSummary = async () => {
     setLoading(true);
-    /* users */
-    const path = "/api/totalSummaryUsers";
-    const params = {
+    /* sin reclamar */
+    const pathNotClaim = "/api/totalSummaryNotClaim";
+    const paramsNotClaim = {
       headers: {},
       queryStringParameters: {
         country: selectCountry === "Todos" ? "" : selectCountry,
       },
     };
-    const url = `${path}?country=${params.queryStringParameters.country}`;
-    const response = await fetch(url, {
+    const urlNotClaim = `${pathNotClaim}?country=${paramsNotClaim.queryStringParameters.country}`;
+    const responseNotClaim = await fetch(urlNotClaim, {
       method: "GET",
     });
-    const data = await response.json();
+    const dataNotClaim = await responseNotClaim.json();
 
-    /* business */
-    const pathBusiness = "/api/totalSummaryBusiness";
-    const paramsBusiness = {
+    /* reclamados */
+    const pathClaim = "/api/totalSummaryClaim";
+    const paramsClaim = {
       headers: {},
       queryStringParameters: {
         country: selectCountry === "Todos" ? "" : selectCountry,
       },
     };
-    const urlBusiness = `${pathBusiness}?country=${paramsBusiness.queryStringParameters.country}`;
-    const responseBusiness = await fetch(urlBusiness, {
+    const urlClaim = `${pathClaim}?country=${paramsClaim.queryStringParameters.country}`;
+    const responseClaim = await fetch(urlClaim, {
       method: "GET",
     });
-    const dataBusiness = await responseBusiness.json();
-    setDataUsers(data);
-    setDataBusiness(dataBusiness);
+    const dataClaim = await responseClaim.json();
+    setNewDataNotClaim(dataNotClaim);
+    setNewDataClaim(dataClaim);
     setLoading(false);
   };
 
@@ -55,12 +55,10 @@ const Home = () => {
   }, [selectCountry]);
 
   return (
-    <div className={styles.home}>
+    <div className={styles.claim}>
       <Navbar />
       <div className={styles.content}>
-        <p className={styles.titleAdmin}>
-          ¡Bienvenido al Administrador de Portaty!
-        </p>
+        <p className={styles.titleAdmin}>Resumen y gestion de reclamaciones</p>
         <MultipleSelect
           select={selectCountry}
           setSelect={(e) => setSelectCountry(e)}
@@ -74,7 +72,7 @@ const Home = () => {
           <div>
             <div className={styles.contentUsers}>
               <p className={styles.title}>
-                Usuarios{" "}
+                Negocios sin reclamar{" "}
                 {selectCountry === "VEN"
                   ? " en Venezuela"
                   : selectCountry === "COL"
@@ -84,23 +82,23 @@ const Home = () => {
               <div className={styles.users}>
                 <CardTotal
                   texts={{
-                    title: "Total de Usuarios Registrados",
+                    title: "Total de Negocios Registrados sin reclamar",
                     country: selectCountry,
                   }}
-                  data={dataUsers?.total_users}
+                  data={dataNotClaim?.total_businesses}
                 />
                 <CardSummary
                   texts={{
-                    title: "Resumen de Usuarios Registrados",
+                    title: "Resumen de Negocios Registrados sin reclamar",
                     country: selectCountry,
                   }}
-                  data={dataUsers?.data}
+                  data={dataNotClaim?.data}
                 />
               </div>
             </div>
             <div className={styles.contentBusiness}>
               <p className={styles.title}>
-                Negocios
+                Negocios reclamados
                 {selectCountry === "VEN"
                   ? " en Venezuela"
                   : selectCountry === "COL"
@@ -110,18 +108,18 @@ const Home = () => {
               <div className={styles.business}>
                 <CardTotal
                   texts={{
-                    title: "Total de Negocios Registrados",
+                    title: "Total de Negocios Registrados reclamados",
                     country: selectCountry,
                   }}
-                  data={dataBusiness?.total_businesses}
+                  data={dataClaim?.total_businesses}
                   users={false}
                 />
                 <CardSummary
                   texts={{
-                    title: "Resumen de Negocios Registrados",
+                    title: "Resumen de Negocios Registrados reclamados",
                     country: selectCountry,
                   }}
-                  data={dataBusiness?.data}
+                  data={dataClaim?.data}
                 />
               </div>
             </div>

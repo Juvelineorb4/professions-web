@@ -9,12 +9,12 @@ import * as React from "react";
 import { Button, Flex, Grid, TextField } from "@aws-amplify/ui-react";
 import { fetchByPath, getOverrideProps, validateField } from "./utils";
 import { API } from "aws-amplify";
-import { getDeviceNotificationToken } from "../graphql/queries";
-import { updateDeviceNotificationToken } from "../graphql/mutations";
-export default function DeviceNotificationTokenUpdateForm(props) {
+import { getPromotionViews } from "../graphql/queries";
+import { updatePromotionViews } from "../graphql/mutations";
+export default function PromotionViewsUpdateForm(props) {
   const {
     id: idProp,
-    deviceNotificationToken: deviceNotificationTokenModelProp,
+    promotionViews: promotionViewsModelProp,
     onSuccess,
     onError,
     onSubmit,
@@ -24,42 +24,41 @@ export default function DeviceNotificationTokenUpdateForm(props) {
     ...rest
   } = props;
   const initialValues = {
-    deviceID: "",
-    notificationToken: "",
+    userID: "",
+    owner: "",
   };
-  const [deviceID, setDeviceID] = React.useState(initialValues.deviceID);
-  const [notificationToken, setNotificationToken] = React.useState(
-    initialValues.notificationToken
-  );
+  const [userID, setUserID] = React.useState(initialValues.userID);
+  const [owner, setOwner] = React.useState(initialValues.owner);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
-    const cleanValues = deviceNotificationTokenRecord
-      ? { ...initialValues, ...deviceNotificationTokenRecord }
+    const cleanValues = promotionViewsRecord
+      ? { ...initialValues, ...promotionViewsRecord }
       : initialValues;
-    setDeviceID(cleanValues.deviceID);
-    setNotificationToken(cleanValues.notificationToken);
+    setUserID(cleanValues.userID);
+    setOwner(cleanValues.owner);
     setErrors({});
   };
-  const [deviceNotificationTokenRecord, setDeviceNotificationTokenRecord] =
-    React.useState(deviceNotificationTokenModelProp);
+  const [promotionViewsRecord, setPromotionViewsRecord] = React.useState(
+    promotionViewsModelProp
+  );
   React.useEffect(() => {
     const queryData = async () => {
       const record = idProp
         ? (
             await API.graphql({
-              query: getDeviceNotificationToken.replaceAll("__typename", ""),
+              query: getPromotionViews.replaceAll("__typename", ""),
               variables: { id: idProp },
             })
-          )?.data?.getDeviceNotificationToken
-        : deviceNotificationTokenModelProp;
-      setDeviceNotificationTokenRecord(record);
+          )?.data?.getPromotionViews
+        : promotionViewsModelProp;
+      setPromotionViewsRecord(record);
     };
     queryData();
-  }, [idProp, deviceNotificationTokenModelProp]);
-  React.useEffect(resetStateValues, [deviceNotificationTokenRecord]);
+  }, [idProp, promotionViewsModelProp]);
+  React.useEffect(resetStateValues, [promotionViewsRecord]);
   const validations = {
-    deviceID: [],
-    notificationToken: [],
+    userID: [],
+    owner: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -87,8 +86,8 @@ export default function DeviceNotificationTokenUpdateForm(props) {
       onSubmit={async (event) => {
         event.preventDefault();
         let modelFields = {
-          deviceID: deviceID ?? null,
-          notificationToken: notificationToken ?? null,
+          userID: userID ?? null,
+          owner: owner ?? null,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -119,10 +118,10 @@ export default function DeviceNotificationTokenUpdateForm(props) {
             }
           });
           await API.graphql({
-            query: updateDeviceNotificationToken.replaceAll("__typename", ""),
+            query: updatePromotionViews.replaceAll("__typename", ""),
             variables: {
               input: {
-                id: deviceNotificationTokenRecord.id,
+                id: promotionViewsRecord.id,
                 ...modelFields,
               },
             },
@@ -137,60 +136,58 @@ export default function DeviceNotificationTokenUpdateForm(props) {
           }
         }
       }}
-      {...getOverrideProps(overrides, "DeviceNotificationTokenUpdateForm")}
+      {...getOverrideProps(overrides, "PromotionViewsUpdateForm")}
       {...rest}
     >
       <TextField
-        label="Device id"
+        label="User id"
         isRequired={false}
         isReadOnly={false}
-        value={deviceID}
+        value={userID}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
-              deviceID: value,
-              notificationToken,
+              userID: value,
+              owner,
             };
             const result = onChange(modelFields);
-            value = result?.deviceID ?? value;
+            value = result?.userID ?? value;
           }
-          if (errors.deviceID?.hasError) {
-            runValidationTasks("deviceID", value);
+          if (errors.userID?.hasError) {
+            runValidationTasks("userID", value);
           }
-          setDeviceID(value);
+          setUserID(value);
         }}
-        onBlur={() => runValidationTasks("deviceID", deviceID)}
-        errorMessage={errors.deviceID?.errorMessage}
-        hasError={errors.deviceID?.hasError}
-        {...getOverrideProps(overrides, "deviceID")}
+        onBlur={() => runValidationTasks("userID", userID)}
+        errorMessage={errors.userID?.errorMessage}
+        hasError={errors.userID?.hasError}
+        {...getOverrideProps(overrides, "userID")}
       ></TextField>
       <TextField
-        label="Notification token"
+        label="Owner"
         isRequired={false}
         isReadOnly={false}
-        value={notificationToken}
+        value={owner}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
-              deviceID,
-              notificationToken: value,
+              userID,
+              owner: value,
             };
             const result = onChange(modelFields);
-            value = result?.notificationToken ?? value;
+            value = result?.owner ?? value;
           }
-          if (errors.notificationToken?.hasError) {
-            runValidationTasks("notificationToken", value);
+          if (errors.owner?.hasError) {
+            runValidationTasks("owner", value);
           }
-          setNotificationToken(value);
+          setOwner(value);
         }}
-        onBlur={() =>
-          runValidationTasks("notificationToken", notificationToken)
-        }
-        errorMessage={errors.notificationToken?.errorMessage}
-        hasError={errors.notificationToken?.hasError}
-        {...getOverrideProps(overrides, "notificationToken")}
+        onBlur={() => runValidationTasks("owner", owner)}
+        errorMessage={errors.owner?.errorMessage}
+        hasError={errors.owner?.hasError}
+        {...getOverrideProps(overrides, "owner")}
       ></TextField>
       <Flex
         justifyContent="space-between"
@@ -203,7 +200,7 @@ export default function DeviceNotificationTokenUpdateForm(props) {
             event.preventDefault();
             resetStateValues();
           }}
-          isDisabled={!(idProp || deviceNotificationTokenModelProp)}
+          isDisabled={!(idProp || promotionViewsModelProp)}
           {...getOverrideProps(overrides, "ResetButton")}
         ></Button>
         <Flex
@@ -215,7 +212,7 @@ export default function DeviceNotificationTokenUpdateForm(props) {
             type="submit"
             variation="primary"
             isDisabled={
-              !(idProp || deviceNotificationTokenModelProp) ||
+              !(idProp || promotionViewsModelProp) ||
               Object.values(errors).some((e) => e?.hasError)
             }
             {...getOverrideProps(overrides, "SubmitButton")}

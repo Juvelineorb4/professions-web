@@ -9,8 +9,8 @@ import * as React from "react";
 import { Button, Flex, Grid, TextField } from "@aws-amplify/ui-react";
 import { fetchByPath, getOverrideProps, validateField } from "./utils";
 import { API } from "aws-amplify";
-import { createDeviceNotificationToken } from "../graphql/mutations";
-export default function DeviceNotificationTokenCreateForm(props) {
+import { createUserNotification } from "../graphql/mutations";
+export default function UserNotificationCreateForm(props) {
   const {
     clearOnSuccess = true,
     onSuccess,
@@ -22,22 +22,32 @@ export default function DeviceNotificationTokenCreateForm(props) {
     ...rest
   } = props;
   const initialValues = {
-    deviceID: "",
-    notificationToken: "",
+    title: "",
+    message: "",
+    type: "",
+    data: "",
+    owner: "",
   };
-  const [deviceID, setDeviceID] = React.useState(initialValues.deviceID);
-  const [notificationToken, setNotificationToken] = React.useState(
-    initialValues.notificationToken
-  );
+  const [title, setTitle] = React.useState(initialValues.title);
+  const [message, setMessage] = React.useState(initialValues.message);
+  const [type, setType] = React.useState(initialValues.type);
+  const [data, setData] = React.useState(initialValues.data);
+  const [owner, setOwner] = React.useState(initialValues.owner);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
-    setDeviceID(initialValues.deviceID);
-    setNotificationToken(initialValues.notificationToken);
+    setTitle(initialValues.title);
+    setMessage(initialValues.message);
+    setType(initialValues.type);
+    setData(initialValues.data);
+    setOwner(initialValues.owner);
     setErrors({});
   };
   const validations = {
-    deviceID: [],
-    notificationToken: [],
+    title: [],
+    message: [],
+    type: [],
+    data: [],
+    owner: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -65,8 +75,11 @@ export default function DeviceNotificationTokenCreateForm(props) {
       onSubmit={async (event) => {
         event.preventDefault();
         let modelFields = {
-          deviceID,
-          notificationToken,
+          title,
+          message,
+          type,
+          data,
+          owner,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -97,7 +110,7 @@ export default function DeviceNotificationTokenCreateForm(props) {
             }
           });
           await API.graphql({
-            query: createDeviceNotificationToken.replaceAll("__typename", ""),
+            query: createUserNotification.replaceAll("__typename", ""),
             variables: {
               input: {
                 ...modelFields,
@@ -117,60 +130,148 @@ export default function DeviceNotificationTokenCreateForm(props) {
           }
         }
       }}
-      {...getOverrideProps(overrides, "DeviceNotificationTokenCreateForm")}
+      {...getOverrideProps(overrides, "UserNotificationCreateForm")}
       {...rest}
     >
       <TextField
-        label="Device id"
+        label="Title"
         isRequired={false}
         isReadOnly={false}
-        value={deviceID}
+        value={title}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
-              deviceID: value,
-              notificationToken,
+              title: value,
+              message,
+              type,
+              data,
+              owner,
             };
             const result = onChange(modelFields);
-            value = result?.deviceID ?? value;
+            value = result?.title ?? value;
           }
-          if (errors.deviceID?.hasError) {
-            runValidationTasks("deviceID", value);
+          if (errors.title?.hasError) {
+            runValidationTasks("title", value);
           }
-          setDeviceID(value);
+          setTitle(value);
         }}
-        onBlur={() => runValidationTasks("deviceID", deviceID)}
-        errorMessage={errors.deviceID?.errorMessage}
-        hasError={errors.deviceID?.hasError}
-        {...getOverrideProps(overrides, "deviceID")}
+        onBlur={() => runValidationTasks("title", title)}
+        errorMessage={errors.title?.errorMessage}
+        hasError={errors.title?.hasError}
+        {...getOverrideProps(overrides, "title")}
       ></TextField>
       <TextField
-        label="Notification token"
+        label="Message"
         isRequired={false}
         isReadOnly={false}
-        value={notificationToken}
+        value={message}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
-              deviceID,
-              notificationToken: value,
+              title,
+              message: value,
+              type,
+              data,
+              owner,
             };
             const result = onChange(modelFields);
-            value = result?.notificationToken ?? value;
+            value = result?.message ?? value;
           }
-          if (errors.notificationToken?.hasError) {
-            runValidationTasks("notificationToken", value);
+          if (errors.message?.hasError) {
+            runValidationTasks("message", value);
           }
-          setNotificationToken(value);
+          setMessage(value);
         }}
-        onBlur={() =>
-          runValidationTasks("notificationToken", notificationToken)
-        }
-        errorMessage={errors.notificationToken?.errorMessage}
-        hasError={errors.notificationToken?.hasError}
-        {...getOverrideProps(overrides, "notificationToken")}
+        onBlur={() => runValidationTasks("message", message)}
+        errorMessage={errors.message?.errorMessage}
+        hasError={errors.message?.hasError}
+        {...getOverrideProps(overrides, "message")}
+      ></TextField>
+      <TextField
+        label="Type"
+        isRequired={false}
+        isReadOnly={false}
+        value={type}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              title,
+              message,
+              type: value,
+              data,
+              owner,
+            };
+            const result = onChange(modelFields);
+            value = result?.type ?? value;
+          }
+          if (errors.type?.hasError) {
+            runValidationTasks("type", value);
+          }
+          setType(value);
+        }}
+        onBlur={() => runValidationTasks("type", type)}
+        errorMessage={errors.type?.errorMessage}
+        hasError={errors.type?.hasError}
+        {...getOverrideProps(overrides, "type")}
+      ></TextField>
+      <TextField
+        label="Data"
+        isRequired={false}
+        isReadOnly={false}
+        value={data}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              title,
+              message,
+              type,
+              data: value,
+              owner,
+            };
+            const result = onChange(modelFields);
+            value = result?.data ?? value;
+          }
+          if (errors.data?.hasError) {
+            runValidationTasks("data", value);
+          }
+          setData(value);
+        }}
+        onBlur={() => runValidationTasks("data", data)}
+        errorMessage={errors.data?.errorMessage}
+        hasError={errors.data?.hasError}
+        {...getOverrideProps(overrides, "data")}
+      ></TextField>
+      <TextField
+        label="Owner"
+        isRequired={false}
+        isReadOnly={false}
+        value={owner}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              title,
+              message,
+              type,
+              data,
+              owner: value,
+            };
+            const result = onChange(modelFields);
+            value = result?.owner ?? value;
+          }
+          if (errors.owner?.hasError) {
+            runValidationTasks("owner", value);
+          }
+          setOwner(value);
+        }}
+        onBlur={() => runValidationTasks("owner", owner)}
+        errorMessage={errors.owner?.errorMessage}
+        hasError={errors.owner?.hasError}
+        {...getOverrideProps(overrides, "owner")}
       ></TextField>
       <Flex
         justifyContent="space-between"
