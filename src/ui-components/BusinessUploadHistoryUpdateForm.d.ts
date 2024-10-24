@@ -6,8 +6,16 @@
 
 import * as React from "react";
 import { GridProps, TextFieldProps } from "@aws-amplify/ui-react";
-import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
-import { BusinessUploadHistory } from "../models";
+export declare type EscapeHatchProps = {
+    [elementHierarchy: string]: Record<string, unknown>;
+} | null;
+export declare type VariantValues = {
+    [key: string]: string;
+};
+export declare type Variant = {
+    variantValues: VariantValues;
+    overrides: EscapeHatchProps;
+};
 export declare type ValidationResponse = {
     hasError: boolean;
     errorMessage?: string;
@@ -46,7 +54,7 @@ export declare type BusinessUploadHistoryUpdateFormProps = React.PropsWithChildr
     overrides?: BusinessUploadHistoryUpdateFormOverridesProps | undefined | null;
 } & {
     id?: string;
-    businessUploadHistory?: BusinessUploadHistory;
+    businessUploadHistory?: any;
     onSubmit?: (fields: BusinessUploadHistoryUpdateFormInputValues) => BusinessUploadHistoryUpdateFormInputValues;
     onSuccess?: (fields: BusinessUploadHistoryUpdateFormInputValues) => void;
     onError?: (fields: BusinessUploadHistoryUpdateFormInputValues, errorMessage: string) => void;

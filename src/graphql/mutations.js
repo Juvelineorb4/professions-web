@@ -12,6 +12,7 @@ export const createDeviceNotificationToken = /* GraphQL */ `
       notificationToken
       createdAt
       updatedAt
+      __typename
     }
   }
 `;
@@ -26,6 +27,7 @@ export const updateDeviceNotificationToken = /* GraphQL */ `
       notificationToken
       createdAt
       updatedAt
+      __typename
     }
   }
 `;
@@ -40,6 +42,7 @@ export const deleteDeviceNotificationToken = /* GraphQL */ `
       notificationToken
       createdAt
       updatedAt
+      __typename
     }
   }
 `;
@@ -54,6 +57,7 @@ export const createAppVersionHistory = /* GraphQL */ `
       latestVersion
       createdAt
       updatedAt
+      __typename
     }
   }
 `;
@@ -68,6 +72,7 @@ export const updateAppVersionHistory = /* GraphQL */ `
       latestVersion
       createdAt
       updatedAt
+      __typename
     }
   }
 `;
@@ -82,6 +87,7 @@ export const deleteAppVersionHistory = /* GraphQL */ `
       latestVersion
       createdAt
       updatedAt
+      __typename
     }
   }
 `;
@@ -98,6 +104,7 @@ export const createReports = /* GraphQL */ `
       status
       createdAt
       updatedAt
+      __typename
     }
   }
 `;
@@ -114,6 +121,7 @@ export const updateReports = /* GraphQL */ `
       status
       createdAt
       updatedAt
+      __typename
     }
   }
 `;
@@ -130,6 +138,7 @@ export const deleteReports = /* GraphQL */ `
       status
       createdAt
       updatedAt
+      __typename
     }
   }
 `;
@@ -153,6 +162,7 @@ export const deleteBusinessComment = /* GraphQL */ `
         owner
         createdAt
         updatedAt
+        __typename
       }
       businessID
       stars
@@ -160,6 +170,7 @@ export const deleteBusinessComment = /* GraphQL */ `
       createdAt
       updatedAt
       owner
+      __typename
     }
   }
 `;
@@ -178,6 +189,7 @@ export const deleteComplaints = /* GraphQL */ `
       owner
       createdAt
       updatedAt
+      __typename
     }
   }
 `;
@@ -192,6 +204,7 @@ export const createNotificationHistory = /* GraphQL */ `
       message
       createdAt
       updatedAt
+      __typename
     }
   }
 `;
@@ -206,6 +219,7 @@ export const updateNotificationHistory = /* GraphQL */ `
       message
       createdAt
       updatedAt
+      __typename
     }
   }
 `;
@@ -220,6 +234,7 @@ export const deleteNotificationHistory = /* GraphQL */ `
       message
       createdAt
       updatedAt
+      __typename
     }
   }
 `;
@@ -233,9 +248,11 @@ export const createArea = /* GraphQL */ `
       name
       activities {
         nextToken
+        __typename
       }
       createdAt
       updatedAt
+      __typename
     }
   }
 `;
@@ -249,9 +266,11 @@ export const updateArea = /* GraphQL */ `
       name
       activities {
         nextToken
+        __typename
       }
       createdAt
       updatedAt
+      __typename
     }
   }
 `;
@@ -265,9 +284,11 @@ export const deleteArea = /* GraphQL */ `
       name
       activities {
         nextToken
+        __typename
       }
       createdAt
       updatedAt
+      __typename
     }
   }
 `;
@@ -285,9 +306,11 @@ export const createActivity = /* GraphQL */ `
         name
         createdAt
         updatedAt
+        __typename
       }
       createdAt
       updatedAt
+      __typename
     }
   }
 `;
@@ -305,9 +328,11 @@ export const updateActivity = /* GraphQL */ `
         name
         createdAt
         updatedAt
+        __typename
       }
       createdAt
       updatedAt
+      __typename
     }
   }
 `;
@@ -325,9 +350,11 @@ export const deleteActivity = /* GraphQL */ `
         name
         createdAt
         updatedAt
+        __typename
       }
       createdAt
       updatedAt
+      __typename
     }
   }
 `;
@@ -347,32 +374,41 @@ export const createUsers = /* GraphQL */ `
       notificationToken
       favorites {
         nextToken
+        __typename
       }
       business {
         nextToken
+        __typename
       }
       comments {
         nextToken
+        __typename
       }
       promotions {
         nextToken
+        __typename
       }
       notifications {
         nextToken
+        __typename
       }
       lastLocation {
         lat
         lon
+        __typename
       }
       dates {
         nextToken
+        __typename
       }
       claimRequests {
         nextToken
+        __typename
       }
       owner
       createdAt
       updatedAt
+      __typename
     }
   }
 `;
@@ -392,32 +428,41 @@ export const updateUsers = /* GraphQL */ `
       notificationToken
       favorites {
         nextToken
+        __typename
       }
       business {
         nextToken
+        __typename
       }
       comments {
         nextToken
+        __typename
       }
       promotions {
         nextToken
+        __typename
       }
       notifications {
         nextToken
+        __typename
       }
       lastLocation {
         lat
         lon
+        __typename
       }
       dates {
         nextToken
+        __typename
       }
       claimRequests {
         nextToken
+        __typename
       }
       owner
       createdAt
       updatedAt
+      __typename
     }
   }
 `;
@@ -437,32 +482,41 @@ export const deleteUsers = /* GraphQL */ `
       notificationToken
       favorites {
         nextToken
+        __typename
       }
       business {
         nextToken
+        __typename
       }
       comments {
         nextToken
+        __typename
       }
       promotions {
         nextToken
+        __typename
       }
       notifications {
         nextToken
+        __typename
       }
       lastLocation {
         lat
         lon
+        __typename
       }
       dates {
         nextToken
+        __typename
       }
       claimRequests {
         nextToken
+        __typename
       }
       owner
       createdAt
       updatedAt
+      __typename
     }
   }
 `;
@@ -481,6 +535,7 @@ export const createUserNotification = /* GraphQL */ `
       owner
       createdAt
       updatedAt
+      __typename
     }
   }
 `;
@@ -499,6 +554,7 @@ export const updateUserNotification = /* GraphQL */ `
       owner
       createdAt
       updatedAt
+      __typename
     }
   }
 `;
@@ -517,6 +573,7 @@ export const deleteUserNotification = /* GraphQL */ `
       owner
       createdAt
       updatedAt
+      __typename
     }
   }
 `;
@@ -540,6 +597,7 @@ export const createBusiness = /* GraphQL */ `
         owner
         createdAt
         updatedAt
+        __typename
       }
       status
       statusOwner
@@ -557,31 +615,38 @@ export const createBusiness = /* GraphQL */ `
       coordinates {
         lat
         lon
+        __typename
       }
       activity
       tags
       favorites {
         nextToken
+        __typename
       }
       description
       prefer
       schedule
       comments {
         nextToken
+        __typename
       }
       promotions {
         nextToken
+        __typename
       }
       catalogpdf
       dates {
         nextToken
+        __typename
       }
       claimRequests {
         nextToken
+        __typename
       }
+      owner
       createdAt
       updatedAt
-      owner
+      __typename
     }
   }
 `;
@@ -605,6 +670,7 @@ export const updateBusiness = /* GraphQL */ `
         owner
         createdAt
         updatedAt
+        __typename
       }
       status
       statusOwner
@@ -622,31 +688,38 @@ export const updateBusiness = /* GraphQL */ `
       coordinates {
         lat
         lon
+        __typename
       }
       activity
       tags
       favorites {
         nextToken
+        __typename
       }
       description
       prefer
       schedule
       comments {
         nextToken
+        __typename
       }
       promotions {
         nextToken
+        __typename
       }
       catalogpdf
       dates {
         nextToken
+        __typename
       }
       claimRequests {
         nextToken
+        __typename
       }
+      owner
       createdAt
       updatedAt
-      owner
+      __typename
     }
   }
 `;
@@ -670,6 +743,7 @@ export const deleteBusiness = /* GraphQL */ `
         owner
         createdAt
         updatedAt
+        __typename
       }
       status
       statusOwner
@@ -687,31 +761,38 @@ export const deleteBusiness = /* GraphQL */ `
       coordinates {
         lat
         lon
+        __typename
       }
       activity
       tags
       favorites {
         nextToken
+        __typename
       }
       description
       prefer
       schedule
       comments {
         nextToken
+        __typename
       }
       promotions {
         nextToken
+        __typename
       }
       catalogpdf
       dates {
         nextToken
+        __typename
       }
       claimRequests {
         nextToken
+        __typename
       }
+      owner
       createdAt
       updatedAt
-      owner
+      __typename
     }
   }
 `;
@@ -735,6 +816,7 @@ export const createBusinessComment = /* GraphQL */ `
         owner
         createdAt
         updatedAt
+        __typename
       }
       businessID
       stars
@@ -742,6 +824,7 @@ export const createBusinessComment = /* GraphQL */ `
       createdAt
       updatedAt
       owner
+      __typename
     }
   }
 `;
@@ -765,6 +848,7 @@ export const updateBusinessComment = /* GraphQL */ `
         owner
         createdAt
         updatedAt
+        __typename
       }
       businessID
       stars
@@ -772,6 +856,7 @@ export const updateBusinessComment = /* GraphQL */ `
       createdAt
       updatedAt
       owner
+      __typename
     }
   }
 `;
@@ -795,6 +880,7 @@ export const createBusinessPromotion = /* GraphQL */ `
         owner
         createdAt
         updatedAt
+        __typename
       }
       businessID
       business {
@@ -819,9 +905,10 @@ export const createBusinessPromotion = /* GraphQL */ `
         prefer
         schedule
         catalogpdf
+        owner
         createdAt
         updatedAt
-        owner
+        __typename
       }
       title
       dateInitial
@@ -832,10 +919,12 @@ export const createBusinessPromotion = /* GraphQL */ `
       notifiedUserIDs
       viewedUsers {
         nextToken
+        __typename
       }
       owner
       createdAt
       updatedAt
+      __typename
     }
   }
 `;
@@ -859,6 +948,7 @@ export const updateBusinessPromotion = /* GraphQL */ `
         owner
         createdAt
         updatedAt
+        __typename
       }
       businessID
       business {
@@ -883,9 +973,10 @@ export const updateBusinessPromotion = /* GraphQL */ `
         prefer
         schedule
         catalogpdf
+        owner
         createdAt
         updatedAt
-        owner
+        __typename
       }
       title
       dateInitial
@@ -896,10 +987,12 @@ export const updateBusinessPromotion = /* GraphQL */ `
       notifiedUserIDs
       viewedUsers {
         nextToken
+        __typename
       }
       owner
       createdAt
       updatedAt
+      __typename
     }
   }
 `;
@@ -923,6 +1016,7 @@ export const deleteBusinessPromotion = /* GraphQL */ `
         owner
         createdAt
         updatedAt
+        __typename
       }
       businessID
       business {
@@ -947,9 +1041,10 @@ export const deleteBusinessPromotion = /* GraphQL */ `
         prefer
         schedule
         catalogpdf
+        owner
         createdAt
         updatedAt
-        owner
+        __typename
       }
       title
       dateInitial
@@ -960,10 +1055,12 @@ export const deleteBusinessPromotion = /* GraphQL */ `
       notifiedUserIDs
       viewedUsers {
         nextToken
+        __typename
       }
       owner
       createdAt
       updatedAt
+      __typename
     }
   }
 `;
@@ -979,6 +1076,7 @@ export const createPromotionViews = /* GraphQL */ `
       owner
       createdAt
       updatedAt
+      __typename
     }
   }
 `;
@@ -994,6 +1092,7 @@ export const updatePromotionViews = /* GraphQL */ `
       owner
       createdAt
       updatedAt
+      __typename
     }
   }
 `;
@@ -1009,6 +1108,7 @@ export const deletePromotionViews = /* GraphQL */ `
       owner
       createdAt
       updatedAt
+      __typename
     }
   }
 `;
@@ -1042,9 +1142,10 @@ export const createFavorites = /* GraphQL */ `
         prefer
         schedule
         catalogpdf
+        owner
         createdAt
         updatedAt
-        owner
+        __typename
       }
       userID
       user {
@@ -1059,11 +1160,13 @@ export const createFavorites = /* GraphQL */ `
         owner
         createdAt
         updatedAt
+        __typename
       }
       position
       owner
       createdAt
       updatedAt
+      __typename
     }
   }
 `;
@@ -1097,9 +1200,10 @@ export const updateFavorites = /* GraphQL */ `
         prefer
         schedule
         catalogpdf
+        owner
         createdAt
         updatedAt
-        owner
+        __typename
       }
       userID
       user {
@@ -1114,11 +1218,13 @@ export const updateFavorites = /* GraphQL */ `
         owner
         createdAt
         updatedAt
+        __typename
       }
       position
       owner
       createdAt
       updatedAt
+      __typename
     }
   }
 `;
@@ -1152,9 +1258,10 @@ export const deleteFavorites = /* GraphQL */ `
         prefer
         schedule
         catalogpdf
+        owner
         createdAt
         updatedAt
-        owner
+        __typename
       }
       userID
       user {
@@ -1169,11 +1276,13 @@ export const deleteFavorites = /* GraphQL */ `
         owner
         createdAt
         updatedAt
+        __typename
       }
       position
       owner
       createdAt
       updatedAt
+      __typename
     }
   }
 `;
@@ -1192,6 +1301,7 @@ export const createComplaints = /* GraphQL */ `
       owner
       createdAt
       updatedAt
+      __typename
     }
   }
 `;
@@ -1210,6 +1320,7 @@ export const updateComplaints = /* GraphQL */ `
       owner
       createdAt
       updatedAt
+      __typename
     }
   }
 `;
@@ -1224,6 +1335,7 @@ export const createReasonComplaints = /* GraphQL */ `
       createdAt
       updatedAt
       owner
+      __typename
     }
   }
 `;
@@ -1238,6 +1350,7 @@ export const updateReasonComplaints = /* GraphQL */ `
       createdAt
       updatedAt
       owner
+      __typename
     }
   }
 `;
@@ -1252,6 +1365,7 @@ export const deleteReasonComplaints = /* GraphQL */ `
       createdAt
       updatedAt
       owner
+      __typename
     }
   }
 `;
@@ -1271,6 +1385,7 @@ export const createLogs = /* GraphQL */ `
       name
       createdAt
       updatedAt
+      __typename
     }
   }
 `;
@@ -1290,6 +1405,7 @@ export const updateLogs = /* GraphQL */ `
       name
       createdAt
       updatedAt
+      __typename
     }
   }
 `;
@@ -1309,6 +1425,7 @@ export const deleteLogs = /* GraphQL */ `
       name
       createdAt
       updatedAt
+      __typename
     }
   }
 `;
@@ -1332,7 +1449,9 @@ export const createDate = /* GraphQL */ `
         owner
         createdAt
         updatedAt
+        __typename
       }
+      userToken
       businessID
       business {
         id
@@ -1356,15 +1475,17 @@ export const createDate = /* GraphQL */ `
         prefer
         schedule
         catalogpdf
+        owner
         createdAt
         updatedAt
-        owner
+        __typename
       }
       date
       notificationMethod
       createdAt
       updatedAt
       owner
+      __typename
     }
   }
 `;
@@ -1388,7 +1509,9 @@ export const updateDate = /* GraphQL */ `
         owner
         createdAt
         updatedAt
+        __typename
       }
+      userToken
       businessID
       business {
         id
@@ -1412,15 +1535,17 @@ export const updateDate = /* GraphQL */ `
         prefer
         schedule
         catalogpdf
+        owner
         createdAt
         updatedAt
-        owner
+        __typename
       }
       date
       notificationMethod
       createdAt
       updatedAt
       owner
+      __typename
     }
   }
 `;
@@ -1444,7 +1569,9 @@ export const deleteDate = /* GraphQL */ `
         owner
         createdAt
         updatedAt
+        __typename
       }
+      userToken
       businessID
       business {
         id
@@ -1468,15 +1595,17 @@ export const deleteDate = /* GraphQL */ `
         prefer
         schedule
         catalogpdf
+        owner
         createdAt
         updatedAt
-        owner
+        __typename
       }
       date
       notificationMethod
       createdAt
       updatedAt
       owner
+      __typename
     }
   }
 `;
@@ -1510,9 +1639,10 @@ export const createClaimRequest = /* GraphQL */ `
         prefer
         schedule
         catalogpdf
+        owner
         createdAt
         updatedAt
-        owner
+        __typename
       }
       userID
       user {
@@ -1527,12 +1657,14 @@ export const createClaimRequest = /* GraphQL */ `
         owner
         createdAt
         updatedAt
+        __typename
       }
       status
       adminResponse
       createdAt
       updatedAt
       owner
+      __typename
     }
   }
 `;
@@ -1566,9 +1698,10 @@ export const updateClaimRequest = /* GraphQL */ `
         prefer
         schedule
         catalogpdf
+        owner
         createdAt
         updatedAt
-        owner
+        __typename
       }
       userID
       user {
@@ -1583,12 +1716,14 @@ export const updateClaimRequest = /* GraphQL */ `
         owner
         createdAt
         updatedAt
+        __typename
       }
       status
       adminResponse
       createdAt
       updatedAt
       owner
+      __typename
     }
   }
 `;
@@ -1622,9 +1757,10 @@ export const deleteClaimRequest = /* GraphQL */ `
         prefer
         schedule
         catalogpdf
+        owner
         createdAt
         updatedAt
-        owner
+        __typename
       }
       userID
       user {
@@ -1639,12 +1775,14 @@ export const deleteClaimRequest = /* GraphQL */ `
         owner
         createdAt
         updatedAt
+        __typename
       }
       status
       adminResponse
       createdAt
       updatedAt
       owner
+      __typename
     }
   }
 `;
@@ -1664,6 +1802,7 @@ export const createBusinessUploadHistory = /* GraphQL */ `
       invalidPath
       createdAt
       updatedAt
+      __typename
     }
   }
 `;
@@ -1683,6 +1822,7 @@ export const updateBusinessUploadHistory = /* GraphQL */ `
       invalidPath
       createdAt
       updatedAt
+      __typename
     }
   }
 `;
@@ -1702,6 +1842,7 @@ export const deleteBusinessUploadHistory = /* GraphQL */ `
       invalidPath
       createdAt
       updatedAt
+      __typename
     }
   }
 `;

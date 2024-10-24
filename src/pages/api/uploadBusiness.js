@@ -1,4 +1,5 @@
 // pages/api/send-notifications.js
+import { API_BASE_URL } from '@/constants/api'
 export default async function handler(req, res) {
   if (req.method !== "POST") {
     return res.status(405).json({ message: "Método no permitido" });
@@ -8,7 +9,7 @@ export default async function handler(req, res) {
 
   try {
     const response = await fetch(
-      `https://3aa3yts4zj.execute-api.us-east-1.amazonaws.com/dev/admin/dashboard/upload?file=${file}`,
+      `${API_BASE_URL}/admin/dashboard/upload?file=${file}`,
       {
         method: "POST",
         headers: {

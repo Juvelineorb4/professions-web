@@ -7,7 +7,7 @@ import TableHistoryManagement from "@/components/TableHistoryManagement";
 import { API, graphqlOperation } from "aws-amplify";
 import { onCreateBusinessUploadHistory } from "@/graphql/custom/subscription";
 import { listBusinessUploadHistories } from "@/graphql/custom/queries";
-
+import { requireAuth } from "@/lib/auth";
 const Management = () => {
   const [fileContent, setFileContent] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -77,5 +77,5 @@ const Management = () => {
     </div>
   );
 };
-
+export const getServerSideProps = requireAuth;
 export default Management;

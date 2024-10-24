@@ -9,6 +9,7 @@ export const getDeviceNotificationToken = /* GraphQL */ `
       notificationToken
       createdAt
       updatedAt
+      __typename
     }
   }
 `;
@@ -29,8 +30,10 @@ export const listDeviceNotificationTokens = /* GraphQL */ `
         notificationToken
         createdAt
         updatedAt
+        __typename
       }
       nextToken
+      __typename
     }
   }
 `;
@@ -42,6 +45,7 @@ export const getAppVersionHistory = /* GraphQL */ `
       latestVersion
       createdAt
       updatedAt
+      __typename
     }
   }
 `;
@@ -62,8 +66,10 @@ export const listAppVersionHistories = /* GraphQL */ `
         latestVersion
         createdAt
         updatedAt
+        __typename
       }
       nextToken
+      __typename
     }
   }
 `;
@@ -77,6 +83,7 @@ export const getReports = /* GraphQL */ `
       status
       createdAt
       updatedAt
+      __typename
     }
   }
 `;
@@ -95,12 +102,14 @@ export const listReports = /* GraphQL */ `
         status
         createdAt
         updatedAt
+        __typename
       }
       nextToken
+      __typename
     }
   }
 `;
-export const appVersionByDate = /* GraphQL */ `
+export const AppVersionByDate = /* GraphQL */ `
   query AppVersionByDate(
     $platform: AppPlatform!
     $createdAt: ModelStringKeyConditionInput
@@ -123,8 +132,10 @@ export const appVersionByDate = /* GraphQL */ `
         latestVersion
         createdAt
         updatedAt
+        __typename
       }
       nextToken
+      __typename
     }
   }
 `;
@@ -136,6 +147,7 @@ export const getNotificationHistory = /* GraphQL */ `
       message
       createdAt
       updatedAt
+      __typename
     }
   }
 `;
@@ -156,8 +168,10 @@ export const listNotificationHistories = /* GraphQL */ `
         message
         createdAt
         updatedAt
+        __typename
       }
       nextToken
+      __typename
     }
   }
 `;
@@ -168,9 +182,11 @@ export const getArea = /* GraphQL */ `
       name
       activities {
         nextToken
+        __typename
       }
       createdAt
       updatedAt
+      __typename
     }
   }
 `;
@@ -186,8 +202,10 @@ export const listAreas = /* GraphQL */ `
         name
         createdAt
         updatedAt
+        __typename
       }
       nextToken
+      __typename
     }
   }
 `;
@@ -202,9 +220,11 @@ export const getActivity = /* GraphQL */ `
         name
         createdAt
         updatedAt
+        __typename
       }
       createdAt
       updatedAt
+      __typename
     }
   }
 `;
@@ -221,8 +241,10 @@ export const listActivities = /* GraphQL */ `
         areaID
         createdAt
         updatedAt
+        __typename
       }
       nextToken
+      __typename
     }
   }
 `;
@@ -247,8 +269,10 @@ export const activitiesByAreaID = /* GraphQL */ `
         areaID
         createdAt
         updatedAt
+        __typename
       }
       nextToken
+      __typename
     }
   }
 `;
@@ -265,32 +289,41 @@ export const getUsers = /* GraphQL */ `
       notificationToken
       favorites {
         nextToken
+        __typename
       }
       business {
         nextToken
+        __typename
       }
       comments {
         nextToken
+        __typename
       }
       promotions {
         nextToken
+        __typename
       }
       notifications {
         nextToken
+        __typename
       }
       lastLocation {
         lat
         lon
+        __typename
       }
       dates {
         nextToken
+        __typename
       }
       claimRequests {
         nextToken
+        __typename
       }
       owner
       createdAt
       updatedAt
+      __typename
     }
   }
 `;
@@ -313,8 +346,10 @@ export const listUsers = /* GraphQL */ `
         owner
         createdAt
         updatedAt
+        __typename
       }
       nextToken
+      __typename
     }
   }
 `;
@@ -345,8 +380,10 @@ export const userByEmail = /* GraphQL */ `
         owner
         createdAt
         updatedAt
+        __typename
       }
       nextToken
+      __typename
     }
   }
 `;
@@ -362,6 +399,7 @@ export const getUserNotification = /* GraphQL */ `
       owner
       createdAt
       updatedAt
+      __typename
     }
   }
 `;
@@ -386,8 +424,10 @@ export const listUserNotifications = /* GraphQL */ `
         owner
         createdAt
         updatedAt
+        __typename
       }
       nextToken
+      __typename
     }
   }
 `;
@@ -416,8 +456,10 @@ export const userNotificationsByUserID = /* GraphQL */ `
         owner
         createdAt
         updatedAt
+        __typename
       }
       nextToken
+      __typename
     }
   }
 `;
@@ -438,6 +480,7 @@ export const getBusiness = /* GraphQL */ `
         owner
         createdAt
         updatedAt
+        __typename
       }
       status
       statusOwner
@@ -455,31 +498,38 @@ export const getBusiness = /* GraphQL */ `
       coordinates {
         lat
         lon
+        __typename
       }
       activity
       tags
       favorites {
         nextToken
+        __typename
       }
       description
       prefer
       schedule
       comments {
         nextToken
+        __typename
       }
       promotions {
         nextToken
+        __typename
       }
       catalogpdf
       dates {
         nextToken
+        __typename
       }
       claimRequests {
         nextToken
+        __typename
       }
+      owner
       createdAt
       updatedAt
-      owner
+      __typename
     }
   }
 `;
@@ -512,11 +562,13 @@ export const listBusinesses = /* GraphQL */ `
         prefer
         schedule
         catalogpdf
+        owner
         createdAt
         updatedAt
-        owner
+        __typename
       }
       nextToken
+      __typename
     }
   }
 `;
@@ -557,11 +609,13 @@ export const listBusinessbyUserID = /* GraphQL */ `
         prefer
         schedule
         catalogpdf
+        owner
         createdAt
         updatedAt
-        owner
+        __typename
       }
       nextToken
+      __typename
     }
   }
 `;
@@ -582,6 +636,7 @@ export const getBusinessComment = /* GraphQL */ `
         owner
         createdAt
         updatedAt
+        __typename
       }
       businessID
       stars
@@ -589,6 +644,7 @@ export const getBusinessComment = /* GraphQL */ `
       createdAt
       updatedAt
       owner
+      __typename
     }
   }
 `;
@@ -612,8 +668,10 @@ export const listBusinessComments = /* GraphQL */ `
         createdAt
         updatedAt
         owner
+        __typename
       }
       nextToken
+      __typename
     }
   }
 `;
@@ -641,8 +699,10 @@ export const businessCommentsByUserID = /* GraphQL */ `
         createdAt
         updatedAt
         owner
+        __typename
       }
       nextToken
+      __typename
     }
   }
 `;
@@ -670,8 +730,10 @@ export const businessCommentsByBusinessID = /* GraphQL */ `
         createdAt
         updatedAt
         owner
+        __typename
       }
       nextToken
+      __typename
     }
   }
 `;
@@ -692,6 +754,7 @@ export const getBusinessPromotion = /* GraphQL */ `
         owner
         createdAt
         updatedAt
+        __typename
       }
       businessID
       business {
@@ -716,9 +779,10 @@ export const getBusinessPromotion = /* GraphQL */ `
         prefer
         schedule
         catalogpdf
+        owner
         createdAt
         updatedAt
-        owner
+        __typename
       }
       title
       dateInitial
@@ -729,10 +793,12 @@ export const getBusinessPromotion = /* GraphQL */ `
       notifiedUserIDs
       viewedUsers {
         nextToken
+        __typename
       }
       owner
       createdAt
       updatedAt
+      __typename
     }
   }
 `;
@@ -761,8 +827,10 @@ export const listBusinessPromotions = /* GraphQL */ `
         owner
         createdAt
         updatedAt
+        __typename
       }
       nextToken
+      __typename
     }
   }
 `;
@@ -795,8 +863,10 @@ export const businessPromotionsByUserID = /* GraphQL */ `
         owner
         createdAt
         updatedAt
+        __typename
       }
       nextToken
+      __typename
     }
   }
 `;
@@ -829,8 +899,10 @@ export const businessPromotionsByBusinessID = /* GraphQL */ `
         owner
         createdAt
         updatedAt
+        __typename
       }
       nextToken
+      __typename
     }
   }
 `;
@@ -843,6 +915,7 @@ export const getPromotionViews = /* GraphQL */ `
       owner
       createdAt
       updatedAt
+      __typename
     }
   }
 `;
@@ -860,8 +933,10 @@ export const listPromotionViews = /* GraphQL */ `
         owner
         createdAt
         updatedAt
+        __typename
       }
       nextToken
+      __typename
     }
   }
 `;
@@ -887,8 +962,10 @@ export const promotionViewsByPromotionID = /* GraphQL */ `
         owner
         createdAt
         updatedAt
+        __typename
       }
       nextToken
+      __typename
     }
   }
 `;
@@ -919,9 +996,10 @@ export const getFavorites = /* GraphQL */ `
         prefer
         schedule
         catalogpdf
+        owner
         createdAt
         updatedAt
-        owner
+        __typename
       }
       userID
       user {
@@ -936,11 +1014,13 @@ export const getFavorites = /* GraphQL */ `
         owner
         createdAt
         updatedAt
+        __typename
       }
       position
       owner
       createdAt
       updatedAt
+      __typename
     }
   }
 `;
@@ -959,8 +1039,10 @@ export const listFavorites = /* GraphQL */ `
         owner
         createdAt
         updatedAt
+        __typename
       }
       nextToken
+      __typename
     }
   }
 `;
@@ -989,8 +1071,10 @@ export const favoritesByBusinessID = /* GraphQL */ `
         owner
         createdAt
         updatedAt
+        __typename
       }
       nextToken
+      __typename
     }
   }
 `;
@@ -1017,8 +1101,10 @@ export const listFavoritesbyUserID = /* GraphQL */ `
         owner
         createdAt
         updatedAt
+        __typename
       }
       nextToken
+      __typename
     }
   }
 `;
@@ -1034,6 +1120,7 @@ export const getComplaints = /* GraphQL */ `
       owner
       createdAt
       updatedAt
+      __typename
     }
   }
 `;
@@ -1054,8 +1141,10 @@ export const listComplaints = /* GraphQL */ `
         owner
         createdAt
         updatedAt
+        __typename
       }
       nextToken
+      __typename
     }
   }
 `;
@@ -1067,6 +1156,7 @@ export const getReasonComplaints = /* GraphQL */ `
       createdAt
       updatedAt
       owner
+      __typename
     }
   }
 `;
@@ -1087,8 +1177,10 @@ export const listReasonComplaints = /* GraphQL */ `
         createdAt
         updatedAt
         owner
+        __typename
       }
       nextToken
+      __typename
     }
   }
 `;
@@ -1105,6 +1197,7 @@ export const getLogs = /* GraphQL */ `
       name
       createdAt
       updatedAt
+      __typename
     }
   }
 `;
@@ -1126,8 +1219,10 @@ export const listLogs = /* GraphQL */ `
         name
         createdAt
         updatedAt
+        __typename
       }
       nextToken
+      __typename
     }
   }
 `;
@@ -1148,7 +1243,9 @@ export const getDate = /* GraphQL */ `
         owner
         createdAt
         updatedAt
+        __typename
       }
+      userToken
       businessID
       business {
         id
@@ -1172,15 +1269,17 @@ export const getDate = /* GraphQL */ `
         prefer
         schedule
         catalogpdf
+        owner
         createdAt
         updatedAt
-        owner
+        __typename
       }
       date
       notificationMethod
       createdAt
       updatedAt
       owner
+      __typename
     }
   }
 `;
@@ -1194,14 +1293,17 @@ export const listDates = /* GraphQL */ `
       items {
         id
         userID
+        userToken
         businessID
         date
         notificationMethod
         createdAt
         updatedAt
         owner
+        __typename
       }
       nextToken
+      __typename
     }
   }
 `;
@@ -1223,14 +1325,17 @@ export const listDatesByUser = /* GraphQL */ `
       items {
         id
         userID
+        userToken
         businessID
         date
         notificationMethod
         createdAt
         updatedAt
         owner
+        __typename
       }
       nextToken
+      __typename
     }
   }
 `;
@@ -1252,14 +1357,17 @@ export const listDatesByBusiness = /* GraphQL */ `
       items {
         id
         userID
+        userToken
         businessID
         date
         notificationMethod
         createdAt
         updatedAt
         owner
+        __typename
       }
       nextToken
+      __typename
     }
   }
 `;
@@ -1290,9 +1398,10 @@ export const getClaimRequest = /* GraphQL */ `
         prefer
         schedule
         catalogpdf
+        owner
         createdAt
         updatedAt
-        owner
+        __typename
       }
       userID
       user {
@@ -1307,12 +1416,14 @@ export const getClaimRequest = /* GraphQL */ `
         owner
         createdAt
         updatedAt
+        __typename
       }
       status
       adminResponse
       createdAt
       updatedAt
       owner
+      __typename
     }
   }
 `;
@@ -1332,8 +1443,10 @@ export const listClaimRequests = /* GraphQL */ `
         createdAt
         updatedAt
         owner
+        __typename
       }
       nextToken
+      __typename
     }
   }
 `;
@@ -1361,8 +1474,10 @@ export const listClaimsByBusiness = /* GraphQL */ `
         createdAt
         updatedAt
         owner
+        __typename
       }
       nextToken
+      __typename
     }
   }
 `;
@@ -1390,8 +1505,10 @@ export const listClaimsByUser = /* GraphQL */ `
         createdAt
         updatedAt
         owner
+        __typename
       }
       nextToken
+      __typename
     }
   }
 `;
@@ -1408,6 +1525,7 @@ export const getBusinessUploadHistory = /* GraphQL */ `
       invalidPath
       createdAt
       updatedAt
+      __typename
     }
   }
 `;
@@ -1433,8 +1551,10 @@ export const listBusinessUploadHistories = /* GraphQL */ `
         invalidPath
         createdAt
         updatedAt
+        __typename
       }
       nextToken
+      __typename
     }
   }
 `;

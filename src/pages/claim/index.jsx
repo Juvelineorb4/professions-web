@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { API, withSSRContext } from "aws-amplify";
+import { API } from "aws-amplify";
 import Navbar from "../../components/Navbar";
 import CardTotal from "@/components/CardTotal";
 import CardSummary from "@/components/CardSummary";
@@ -8,7 +8,7 @@ import MultipleSelect from "@/components/MultipleSelect";
 import CircularProgress from "@mui/material/CircularProgress";
 import TableBusinessClaim from "@/components/TableBusinessClaim";
 import { listClaimRequests } from "@/graphql/queries";
-
+import { requireAuth } from "@/lib/auth";
 const Home = () => {
   const [dataNotClaim, setNewDataNotClaim] = useState(null);
   const [dataClaim, setNewDataClaim] = useState(null);
@@ -162,5 +162,5 @@ const Home = () => {
     </div>
   );
 };
-
+export const getServerSideProps = requireAuth;
 export default Home;

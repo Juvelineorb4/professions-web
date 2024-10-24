@@ -13,6 +13,7 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Image from "next/image";
 import Link from "next/link";
+import { requireAuth } from "@/lib/auth";
 
 // amplify
 import { Auth } from "aws-amplify";
@@ -49,7 +50,9 @@ export default function SignIn() {
     const challengeResponse = "CONFIRM_SIGN_IN_WITH_NEW_PASSWORD_REQUIRED";
     try {
       if (!isNewPassword) {
+        console.log("HOLA");
         const user = await Auth.signIn(email, password);
+        console.log("user", user);
         if (user.challengeName === "NEW_PASSWORD_REQUIRED") {
           setUserChangePwd(user);
           setIsNewPassword(true);
@@ -235,3 +238,5 @@ export default function SignIn() {
     </ThemeProvider>
   );
 }
+
+export const getServerSideProps = requireAuth;

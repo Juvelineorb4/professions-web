@@ -7,10 +7,10 @@
 /* eslint-disable */
 import * as React from "react";
 import { Button, Flex, Grid, TextField } from "@aws-amplify/ui-react";
-import { getOverrideProps } from "@aws-amplify/ui-react/internal";
-import { BusinessUploadHistory } from "../models";
-import { fetchByPath, validateField } from "./utils";
-import { DataStore } from "aws-amplify";
+import { fetchByPath, getOverrideProps, validateField } from "./utils";
+import { API } from "aws-amplify";
+import { getBusinessUploadHistory } from "../graphql/queries";
+import { updateBusinessUploadHistory } from "../graphql/mutations";
 export default function BusinessUploadHistoryUpdateForm(props) {
   const {
     id: idProp,
@@ -66,7 +66,12 @@ export default function BusinessUploadHistoryUpdateForm(props) {
   React.useEffect(() => {
     const queryData = async () => {
       const record = idProp
-        ? await DataStore.query(BusinessUploadHistory, idProp)
+        ? (
+            await API.graphql({
+              query: getBusinessUploadHistory.replaceAll("__typename", ""),
+              variables: { id: idProp },
+            })
+          )?.data?.getBusinessUploadHistory
         : businessUploadHistoryModelProp;
       setBusinessUploadHistoryRecord(record);
     };
@@ -125,13 +130,13 @@ export default function BusinessUploadHistoryUpdateForm(props) {
       onSubmit={async (event) => {
         event.preventDefault();
         let modelFields = {
-          uploadDate,
-          completionDate,
-          validCount,
-          total,
-          invalidCount,
-          originalPath,
-          invalidPath,
+          uploadDate: uploadDate ?? null,
+          completionDate: completionDate ?? null,
+          validCount: validCount ?? null,
+          total: total ?? null,
+          invalidCount: invalidCount ?? null,
+          originalPath: originalPath ?? null,
+          invalidPath: invalidPath ?? null,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -157,24 +162,26 @@ export default function BusinessUploadHistoryUpdateForm(props) {
         }
         try {
           Object.entries(modelFields).forEach(([key, value]) => {
-            if (typeof value === "string" && value.trim() === "") {
-              modelFields[key] = undefined;
+            if (typeof value === "string" && value === "") {
+              modelFields[key] = null;
             }
           });
-          await DataStore.save(
-            BusinessUploadHistory.copyOf(
-              businessUploadHistoryRecord,
-              (updated) => {
-                Object.assign(updated, modelFields);
-              }
-            )
-          );
+          await API.graphql({
+            query: updateBusinessUploadHistory.replaceAll("__typename", ""),
+            variables: {
+              input: {
+                id: businessUploadHistoryRecord.id,
+                ...modelFields,
+              },
+            },
+          });
           if (onSuccess) {
             onSuccess(modelFields);
           }
         } catch (err) {
           if (onError) {
-            onError(modelFields, err.message);
+            const messages = err.errors.map((e) => e.message).join("\n");
+            onError(modelFields, messages);
           }
         }
       }}

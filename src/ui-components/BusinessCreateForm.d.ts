@@ -6,7 +6,16 @@
 
 import * as React from "react";
 import { GridProps, SelectFieldProps, SwitchFieldProps, TextFieldProps } from "@aws-amplify/ui-react";
-import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
+export declare type EscapeHatchProps = {
+    [elementHierarchy: string]: Record<string, unknown>;
+} | null;
+export declare type VariantValues = {
+    [key: string]: string;
+};
+export declare type Variant = {
+    variantValues: VariantValues;
+    overrides: EscapeHatchProps;
+};
 export declare type ValidationResponse = {
     hasError: boolean;
     errorMessage?: string;
@@ -32,6 +41,7 @@ export declare type BusinessCreateFormInputValues = {
     prefer?: boolean;
     schedule?: string;
     catalogpdf?: string;
+    owner?: string;
 };
 export declare type BusinessCreateFormValidationValues = {
     status?: ValidationFunction<string>;
@@ -53,6 +63,7 @@ export declare type BusinessCreateFormValidationValues = {
     prefer?: ValidationFunction<boolean>;
     schedule?: ValidationFunction<string>;
     catalogpdf?: ValidationFunction<string>;
+    owner?: ValidationFunction<string>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type BusinessCreateFormOverridesProps = {
@@ -76,6 +87,7 @@ export declare type BusinessCreateFormOverridesProps = {
     prefer?: PrimitiveOverrideProps<SwitchFieldProps>;
     schedule?: PrimitiveOverrideProps<TextFieldProps>;
     catalogpdf?: PrimitiveOverrideProps<TextFieldProps>;
+    owner?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type BusinessCreateFormProps = React.PropsWithChildren<{
     overrides?: BusinessCreateFormOverridesProps | undefined | null;

@@ -3,8 +3,9 @@ import "../../public/styles/font.css";
 import "../configureAmplify";
 import { useEffect } from "react";
 import { Hub, Auth } from "aws-amplify";
-
 import { useRouter } from "next/navigation";
+import { requireAuth } from '@/lib/auth'
+
 
 export default function MyApp({ Component, pageProps }) {
   const router = useRouter();
@@ -24,7 +25,7 @@ export default function MyApp({ Component, pageProps }) {
           break;
       }
     });
-    checkUser();
+    // checkUser();
     return unsubscribe;
   }, []);
   const checkUser = async () => {
@@ -38,8 +39,4 @@ export default function MyApp({ Component, pageProps }) {
   return <Component {...pageProps} />;
 }
 
-export async function getServerSideProps({ req }) {
-  return {
-    props: {},
-  };
-}
+export const getServerSideProps = requireAuth;

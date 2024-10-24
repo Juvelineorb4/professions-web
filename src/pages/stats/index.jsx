@@ -2,7 +2,7 @@ import Navbar from "@/components/Navbar";
 import React from "react";
 import styles from "../../styles/Stats.module.css";
 import SelectCard from "@/components/SelectCard";
-
+import { requireAuth } from "@/lib/auth";
 const Stats = () => {
   return (
     <div className={styles.stats}>
@@ -17,4 +17,5 @@ const Stats = () => {
   );
 };
 
+export const getServerSideProps = requireAuth;
 export default Stats;

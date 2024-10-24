@@ -1,4 +1,5 @@
 // pages/api/send-notifications.js
+import { API_BASE_URL } from '@/constants/api'
 export default async function handler(req, res) {
     if (req.method !== 'POST') {
         return res.status(405).json({ message: 'Método no permitido' });
@@ -7,7 +8,7 @@ export default async function handler(req, res) {
     const { title, message } = req.body;
 
     try {
-        const response = await fetch('https://z5i64n32d6.execute-api.us-east-1.amazonaws.com/prod/dashboard/sendNotifications', {
+        const response = await fetch(`${API_BASE_URL}/dashboard/sendNotifications`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

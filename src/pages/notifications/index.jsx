@@ -5,7 +5,7 @@ import TextField from "@mui/material/TextField";
 import styles from "../../styles/Notifications.module.css";
 import { Button } from "@mui/material";
 import TableNotification from "@/components/TableNotification";
-
+import { requireAuth } from "@/lib/auth";
 const Notifications = () => {
   const [title, setTitle] = useState("");
   const [message, setMessage] = useState("");
@@ -107,5 +107,5 @@ const Notifications = () => {
     </div>
   );
 };
-
+export const getServerSideProps = requireAuth;
 export default Notifications;

@@ -7,10 +7,10 @@
 /* eslint-disable */
 import * as React from "react";
 import { Button, Flex, Grid, TextField } from "@aws-amplify/ui-react";
-import { getOverrideProps } from "@aws-amplify/ui-react/internal";
-import { DeviceNotificationToken } from "../models";
-import { fetchByPath, validateField } from "./utils";
-import { DataStore } from "aws-amplify";
+import { fetchByPath, getOverrideProps, validateField } from "./utils";
+import { API } from "aws-amplify";
+import { getDeviceNotificationToken } from "../graphql/queries";
+import { updateDeviceNotificationToken } from "../graphql/mutations";
 export default function DeviceNotificationTokenUpdateForm(props) {
   const {
     id: idProp,
@@ -45,7 +45,12 @@ export default function DeviceNotificationTokenUpdateForm(props) {
   React.useEffect(() => {
     const queryData = async () => {
       const record = idProp
-        ? await DataStore.query(DeviceNotificationToken, idProp)
+        ? (
+            await API.graphql({
+              query: getDeviceNotificationToken.replaceAll("__typename", ""),
+              variables: { id: idProp },
+            })
+          )?.data?.getDeviceNotificationToken
         : deviceNotificationTokenModelProp;
       setDeviceNotificationTokenRecord(record);
     };
@@ -82,8 +87,8 @@ export default function DeviceNotificationTokenUpdateForm(props) {
       onSubmit={async (event) => {
         event.preventDefault();
         let modelFields = {
-          deviceID,
-          notificationToken,
+          deviceID: deviceID ?? null,
+          notificationToken: notificationToken ?? null,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -109,24 +114,26 @@ export default function DeviceNotificationTokenUpdateForm(props) {
         }
         try {
           Object.entries(modelFields).forEach(([key, value]) => {
-            if (typeof value === "string" && value.trim() === "") {
-              modelFields[key] = undefined;
+            if (typeof value === "string" && value === "") {
+              modelFields[key] = null;
             }
           });
-          await DataStore.save(
-            DeviceNotificationToken.copyOf(
-              deviceNotificationTokenRecord,
-              (updated) => {
-                Object.assign(updated, modelFields);
-              }
-            )
-          );
+          await API.graphql({
+            query: updateDeviceNotificationToken.replaceAll("__typename", ""),
+            variables: {
+              input: {
+                id: deviceNotificationTokenRecord.id,
+                ...modelFields,
+              },
+            },
+          });
           if (onSuccess) {
             onSuccess(modelFields);
           }
         } catch (err) {
           if (onError) {
-            onError(modelFields, err.message);
+            const messages = err.errors.map((e) => e.message).join("\n");
+            onError(modelFields, messages);
           }
         }
       }}
