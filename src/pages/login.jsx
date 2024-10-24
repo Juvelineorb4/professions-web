@@ -13,6 +13,7 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Image from "next/image";
 import Link from "next/link";
+import { requireAuth } from "@/lib/auth";
 
 // amplify
 import { Auth } from "aws-amplify";
@@ -237,3 +238,5 @@ export default function SignIn() {
     </ThemeProvider>
   );
 }
+
+export const getServerSideProps = requireAuth;

@@ -4,11 +4,15 @@ import styles from "../../styles/Management.module.css";
 import * as XLSX from "xlsx";
 import TableBusinessManagement from "@/components/TableBusinessManagement";
 import TableHistoryManagement from "@/components/TableHistoryManagement";
-
+import { API, graphqlOperation } from "aws-amplify";
+import { onCreateBusinessUploadHistory } from "@/graphql/custom/subscription";
+import { listBusinessUploadHistories } from "@/graphql/custom/queries";
+import { requireAuth } from "@/lib/auth";
 const Management = () => {
   const [fileContent, setFileContent] = useState(null);
   const [loading, setLoading] = useState(false);
   const [newFile, setNewFile] = useState(null);
+  const [listHistory, setListHistory] = useState(null);
 
   const fetchFile = async (e) => {
     const file = e.target.files[0];
@@ -30,7 +34,15 @@ const Management = () => {
     reader.readAsArrayBuffer(file);
   };
 
+  const fetchListBusinessHistory = async () => {
+    const response = await API.graphql({
+      query: listBusinessUploadHistories,
+      authMode: "AMAZON_COGNITO_USER_POOLS",
+    });
+    setListHistory(response.data.listBusinessUploadHistories.items);
+  };
   useEffect(() => {
+    fetchListBusinessHistory();
     if (loading) {
       newFile.target.value = "";
     }
@@ -58,14 +70,12 @@ const Management = () => {
           />
         )}
 
-        {/* {!fileContent && (
-          <TableHistoryManagement
-            table={listHistory}
-          />
-        )} */}
+        {!fileContent && listHistory && (
+          <TableHistoryManagement table={listHistory} />
+        )}
       </div>
     </div>
   );
 };
-
+export const getServerSideProps = requireAuth;
 export default Management;
