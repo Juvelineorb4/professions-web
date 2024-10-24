@@ -211,6 +211,7 @@ export default function BusinessUpdateForm(props) {
     prefer: false,
     schedule: "",
     catalogpdf: "",
+    owner: "",
   };
   const [status, setStatus] = React.useState(initialValues.status);
   const [statusOwner, setStatusOwner] = React.useState(
@@ -235,6 +236,7 @@ export default function BusinessUpdateForm(props) {
   const [prefer, setPrefer] = React.useState(initialValues.prefer);
   const [schedule, setSchedule] = React.useState(initialValues.schedule);
   const [catalogpdf, setCatalogpdf] = React.useState(initialValues.catalogpdf);
+  const [owner, setOwner] = React.useState(initialValues.owner);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     const cleanValues = businessRecord
@@ -261,6 +263,7 @@ export default function BusinessUpdateForm(props) {
     setPrefer(cleanValues.prefer);
     setSchedule(cleanValues.schedule);
     setCatalogpdf(cleanValues.catalogpdf);
+    setOwner(cleanValues.owner);
     setErrors({});
   };
   const [businessRecord, setBusinessRecord] = React.useState(businessModelProp);
@@ -303,6 +306,7 @@ export default function BusinessUpdateForm(props) {
     prefer: [],
     schedule: [],
     catalogpdf: [],
+    owner: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -349,6 +353,7 @@ export default function BusinessUpdateForm(props) {
           prefer: prefer ?? null,
           schedule: schedule ?? null,
           catalogpdf: catalogpdf ?? null,
+          owner: owner ?? null,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -428,6 +433,7 @@ export default function BusinessUpdateForm(props) {
               prefer,
               schedule,
               catalogpdf,
+              owner,
             };
             const result = onChange(modelFields);
             value = result?.status ?? value;
@@ -491,6 +497,7 @@ export default function BusinessUpdateForm(props) {
               prefer,
               schedule,
               catalogpdf,
+              owner,
             };
             const result = onChange(modelFields);
             value = result?.statusOwner ?? value;
@@ -549,6 +556,7 @@ export default function BusinessUpdateForm(props) {
               prefer,
               schedule,
               catalogpdf,
+              owner,
             };
             const result = onChange(modelFields);
             value = result?.identityID ?? value;
@@ -591,6 +599,7 @@ export default function BusinessUpdateForm(props) {
               prefer,
               schedule,
               catalogpdf,
+              owner,
             };
             const result = onChange(modelFields);
             value = result?.name ?? value;
@@ -633,6 +642,7 @@ export default function BusinessUpdateForm(props) {
               prefer,
               schedule,
               catalogpdf,
+              owner,
             };
             const result = onChange(modelFields);
             value = result?.image ?? value;
@@ -671,6 +681,7 @@ export default function BusinessUpdateForm(props) {
               prefer,
               schedule,
               catalogpdf,
+              owner,
             };
             const result = onChange(modelFields);
             values = result?.images ?? values;
@@ -738,6 +749,7 @@ export default function BusinessUpdateForm(props) {
               prefer,
               schedule,
               catalogpdf,
+              owner,
             };
             const result = onChange(modelFields);
             value = result?.thumbnail ?? value;
@@ -780,6 +792,7 @@ export default function BusinessUpdateForm(props) {
               prefer,
               schedule,
               catalogpdf,
+              owner,
             };
             const result = onChange(modelFields);
             value = result?.email ?? value;
@@ -822,6 +835,7 @@ export default function BusinessUpdateForm(props) {
               prefer,
               schedule,
               catalogpdf,
+              owner,
             };
             const result = onChange(modelFields);
             value = result?.phone ?? value;
@@ -864,6 +878,7 @@ export default function BusinessUpdateForm(props) {
               prefer,
               schedule,
               catalogpdf,
+              owner,
             };
             const result = onChange(modelFields);
             value = result?.whatsapp ?? value;
@@ -906,6 +921,7 @@ export default function BusinessUpdateForm(props) {
               prefer,
               schedule,
               catalogpdf,
+              owner,
             };
             const result = onChange(modelFields);
             value = result?.instagram ?? value;
@@ -948,6 +964,7 @@ export default function BusinessUpdateForm(props) {
               prefer,
               schedule,
               catalogpdf,
+              owner,
             };
             const result = onChange(modelFields);
             value = result?.facebook ?? value;
@@ -990,6 +1007,7 @@ export default function BusinessUpdateForm(props) {
               prefer,
               schedule,
               catalogpdf,
+              owner,
             };
             const result = onChange(modelFields);
             value = result?.page ?? value;
@@ -1032,6 +1050,7 @@ export default function BusinessUpdateForm(props) {
               prefer,
               schedule,
               catalogpdf,
+              owner,
             };
             const result = onChange(modelFields);
             value = result?.activity ?? value;
@@ -1070,6 +1089,7 @@ export default function BusinessUpdateForm(props) {
               prefer,
               schedule,
               catalogpdf,
+              owner,
             };
             const result = onChange(modelFields);
             values = result?.tags ?? values;
@@ -1137,6 +1157,7 @@ export default function BusinessUpdateForm(props) {
               prefer,
               schedule,
               catalogpdf,
+              owner,
             };
             const result = onChange(modelFields);
             value = result?.description ?? value;
@@ -1179,6 +1200,7 @@ export default function BusinessUpdateForm(props) {
               prefer: value,
               schedule,
               catalogpdf,
+              owner,
             };
             const result = onChange(modelFields);
             value = result?.prefer ?? value;
@@ -1221,6 +1243,7 @@ export default function BusinessUpdateForm(props) {
               prefer,
               schedule: value,
               catalogpdf,
+              owner,
             };
             const result = onChange(modelFields);
             value = result?.schedule ?? value;
@@ -1263,6 +1286,7 @@ export default function BusinessUpdateForm(props) {
               prefer,
               schedule,
               catalogpdf: value,
+              owner,
             };
             const result = onChange(modelFields);
             value = result?.catalogpdf ?? value;
@@ -1276,6 +1300,49 @@ export default function BusinessUpdateForm(props) {
         errorMessage={errors.catalogpdf?.errorMessage}
         hasError={errors.catalogpdf?.hasError}
         {...getOverrideProps(overrides, "catalogpdf")}
+      ></TextField>
+      <TextField
+        label="Owner"
+        isRequired={false}
+        isReadOnly={false}
+        value={owner}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              status,
+              statusOwner,
+              identityID,
+              name,
+              image,
+              images,
+              thumbnail,
+              email,
+              phone,
+              whatsapp,
+              instagram,
+              facebook,
+              page,
+              activity,
+              tags,
+              description,
+              prefer,
+              schedule,
+              catalogpdf,
+              owner: value,
+            };
+            const result = onChange(modelFields);
+            value = result?.owner ?? value;
+          }
+          if (errors.owner?.hasError) {
+            runValidationTasks("owner", value);
+          }
+          setOwner(value);
+        }}
+        onBlur={() => runValidationTasks("owner", owner)}
+        errorMessage={errors.owner?.errorMessage}
+        hasError={errors.owner?.hasError}
+        {...getOverrideProps(overrides, "owner")}
       ></TextField>
       <Flex
         justifyContent="space-between"

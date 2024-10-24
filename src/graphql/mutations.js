@@ -643,9 +643,9 @@ export const createBusiness = /* GraphQL */ `
         nextToken
         __typename
       }
+      owner
       createdAt
       updatedAt
-      owner
       __typename
     }
   }
@@ -716,9 +716,9 @@ export const updateBusiness = /* GraphQL */ `
         nextToken
         __typename
       }
+      owner
       createdAt
       updatedAt
-      owner
       __typename
     }
   }
@@ -789,9 +789,9 @@ export const deleteBusiness = /* GraphQL */ `
         nextToken
         __typename
       }
+      owner
       createdAt
       updatedAt
-      owner
       __typename
     }
   }
@@ -905,9 +905,9 @@ export const createBusinessPromotion = /* GraphQL */ `
         prefer
         schedule
         catalogpdf
+        owner
         createdAt
         updatedAt
-        owner
         __typename
       }
       title
@@ -973,9 +973,9 @@ export const updateBusinessPromotion = /* GraphQL */ `
         prefer
         schedule
         catalogpdf
+        owner
         createdAt
         updatedAt
-        owner
         __typename
       }
       title
@@ -1041,9 +1041,9 @@ export const deleteBusinessPromotion = /* GraphQL */ `
         prefer
         schedule
         catalogpdf
+        owner
         createdAt
         updatedAt
-        owner
         __typename
       }
       title
@@ -1142,9 +1142,9 @@ export const createFavorites = /* GraphQL */ `
         prefer
         schedule
         catalogpdf
+        owner
         createdAt
         updatedAt
-        owner
         __typename
       }
       userID
@@ -1200,9 +1200,9 @@ export const updateFavorites = /* GraphQL */ `
         prefer
         schedule
         catalogpdf
+        owner
         createdAt
         updatedAt
-        owner
         __typename
       }
       userID
@@ -1258,9 +1258,9 @@ export const deleteFavorites = /* GraphQL */ `
         prefer
         schedule
         catalogpdf
+        owner
         createdAt
         updatedAt
-        owner
         __typename
       }
       userID
@@ -1451,6 +1451,7 @@ export const createDate = /* GraphQL */ `
         updatedAt
         __typename
       }
+      userToken
       businessID
       business {
         id
@@ -1474,9 +1475,9 @@ export const createDate = /* GraphQL */ `
         prefer
         schedule
         catalogpdf
+        owner
         createdAt
         updatedAt
-        owner
         __typename
       }
       date
@@ -1510,6 +1511,7 @@ export const updateDate = /* GraphQL */ `
         updatedAt
         __typename
       }
+      userToken
       businessID
       business {
         id
@@ -1533,9 +1535,9 @@ export const updateDate = /* GraphQL */ `
         prefer
         schedule
         catalogpdf
+        owner
         createdAt
         updatedAt
-        owner
         __typename
       }
       date
@@ -1569,6 +1571,7 @@ export const deleteDate = /* GraphQL */ `
         updatedAt
         __typename
       }
+      userToken
       businessID
       business {
         id
@@ -1592,9 +1595,9 @@ export const deleteDate = /* GraphQL */ `
         prefer
         schedule
         catalogpdf
+        owner
         createdAt
         updatedAt
-        owner
         __typename
       }
       date
@@ -1636,9 +1639,9 @@ export const createClaimRequest = /* GraphQL */ `
         prefer
         schedule
         catalogpdf
+        owner
         createdAt
         updatedAt
-        owner
         __typename
       }
       userID
@@ -1695,9 +1698,9 @@ export const updateClaimRequest = /* GraphQL */ `
         prefer
         schedule
         catalogpdf
+        owner
         createdAt
         updatedAt
-        owner
         __typename
       }
       userID
@@ -1754,9 +1757,9 @@ export const deleteClaimRequest = /* GraphQL */ `
         prefer
         schedule
         catalogpdf
+        owner
         createdAt
         updatedAt
-        owner
         __typename
       }
       userID

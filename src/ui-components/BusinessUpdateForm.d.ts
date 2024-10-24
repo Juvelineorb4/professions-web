@@ -41,6 +41,7 @@ export declare type BusinessUpdateFormInputValues = {
     prefer?: boolean;
     schedule?: string;
     catalogpdf?: string;
+    owner?: string;
 };
 export declare type BusinessUpdateFormValidationValues = {
     status?: ValidationFunction<string>;
@@ -62,6 +63,7 @@ export declare type BusinessUpdateFormValidationValues = {
     prefer?: ValidationFunction<boolean>;
     schedule?: ValidationFunction<string>;
     catalogpdf?: ValidationFunction<string>;
+    owner?: ValidationFunction<string>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type BusinessUpdateFormOverridesProps = {
@@ -85,6 +87,7 @@ export declare type BusinessUpdateFormOverridesProps = {
     prefer?: PrimitiveOverrideProps<SwitchFieldProps>;
     schedule?: PrimitiveOverrideProps<TextFieldProps>;
     catalogpdf?: PrimitiveOverrideProps<TextFieldProps>;
+    owner?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type BusinessUpdateFormProps = React.PropsWithChildren<{
     overrides?: BusinessUpdateFormOverridesProps | undefined | null;

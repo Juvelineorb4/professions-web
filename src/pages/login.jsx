@@ -49,7 +49,9 @@ export default function SignIn() {
     const challengeResponse = "CONFIRM_SIGN_IN_WITH_NEW_PASSWORD_REQUIRED";
     try {
       if (!isNewPassword) {
+        console.log("HOLA");
         const user = await Auth.signIn(email, password);
+        console.log("user", user);
         if (user.challengeName === "NEW_PASSWORD_REQUIRED") {
           setUserChangePwd(user);
           setIsNewPassword(true);

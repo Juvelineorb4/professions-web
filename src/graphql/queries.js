@@ -526,9 +526,9 @@ export const getBusiness = /* GraphQL */ `
         nextToken
         __typename
       }
+      owner
       createdAt
       updatedAt
-      owner
       __typename
     }
   }
@@ -562,9 +562,9 @@ export const listBusinesses = /* GraphQL */ `
         prefer
         schedule
         catalogpdf
+        owner
         createdAt
         updatedAt
-        owner
         __typename
       }
       nextToken
@@ -609,9 +609,9 @@ export const listBusinessbyUserID = /* GraphQL */ `
         prefer
         schedule
         catalogpdf
+        owner
         createdAt
         updatedAt
-        owner
         __typename
       }
       nextToken
@@ -779,9 +779,9 @@ export const getBusinessPromotion = /* GraphQL */ `
         prefer
         schedule
         catalogpdf
+        owner
         createdAt
         updatedAt
-        owner
         __typename
       }
       title
@@ -996,9 +996,9 @@ export const getFavorites = /* GraphQL */ `
         prefer
         schedule
         catalogpdf
+        owner
         createdAt
         updatedAt
-        owner
         __typename
       }
       userID
@@ -1245,6 +1245,7 @@ export const getDate = /* GraphQL */ `
         updatedAt
         __typename
       }
+      userToken
       businessID
       business {
         id
@@ -1268,9 +1269,9 @@ export const getDate = /* GraphQL */ `
         prefer
         schedule
         catalogpdf
+        owner
         createdAt
         updatedAt
-        owner
         __typename
       }
       date
@@ -1292,6 +1293,7 @@ export const listDates = /* GraphQL */ `
       items {
         id
         userID
+        userToken
         businessID
         date
         notificationMethod
@@ -1323,6 +1325,7 @@ export const listDatesByUser = /* GraphQL */ `
       items {
         id
         userID
+        userToken
         businessID
         date
         notificationMethod
@@ -1354,6 +1357,7 @@ export const listDatesByBusiness = /* GraphQL */ `
       items {
         id
         userID
+        userToken
         businessID
         date
         notificationMethod
@@ -1394,9 +1398,9 @@ export const getClaimRequest = /* GraphQL */ `
         prefer
         schedule
         catalogpdf
+        owner
         createdAt
         updatedAt
-        owner
         __typename
       }
       userID
