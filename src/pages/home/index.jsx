@@ -6,7 +6,7 @@ import CardSummary from "@/components/CardSummary";
 import styles from "../../styles/Home.module.css";
 import MultipleSelect from "@/components/MultipleSelect";
 import CircularProgress from "@mui/material/CircularProgress";
-
+import { requireAuth } from "@/lib/auth";
 const Home = () => {
   const [dataUsers, setDataUsers] = useState(null);
   const [dataBusiness, setDataBusiness] = useState(null);
@@ -219,5 +219,5 @@ const Home = () => {
     </div>
   );
 };
-
+export const getServerSideProps = requireAuth;
 export default Home;
