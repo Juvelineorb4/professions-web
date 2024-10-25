@@ -25,11 +25,15 @@
 .users,
 .business,
 .contentBusiness,
-.contentUsers {
+.contentUsers,
+.contentCharge,
+.contentOwner {
   display: flex;
 }
 .contentBusiness,
-.contentUsers {
+.contentUsers,
+.contentCharge,
+.contentOwner {
   flex-direction: column;
   margin-bottom: 2rem;
 }
